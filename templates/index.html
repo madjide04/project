@@ -1,159 +1,34 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Chess Game</title>
-<style>
-    .board {
-        display: flex;
-        flex-wrap: wrap;
-        width: 400px;
-        height: 400px;
-    }
-    .square {
-        width: 50px;
-        height: 50px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-    .white { background-color: #f0d9b5; }
-    .black { background-color: #b58863; }
-</style>
-</head>
-<body>
+{% extends 'base.html' %}
 
-<div class="board" id="board"></div>
+{% block head%}
+Task Master
+{% endblock %}
 
-<script>
-    const board = document.getElementById('board');
-    const squares = [];
-    const piecePositions = [
-        'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r',
-        'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p',
-        '', '', '', '', '', '', '', '',
-        '', '', '', '', '', '', '', '',
-        '', '', '', '', '', '', '', '',
-        '', '', '', '', '', '', '', '',
-        'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P',
-        'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'
-    ];
+{% block body%}
+<div class="content">
+    <h1>Task Master</h1>
+    <table>
+        <tr>
+            <th>Task</th>
+            <th>Added</th>
+            <th>Actions</th>
+        </tr>
+        {% for task in tasks %}
+        <tr>
+            <td>{{  task.content    }}</td>
+            <td>{{  task.date_created.date()   }}</td>
+            <td>
+                <a href="">Delete</a>
+                <a href="">Update</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
 
-    function initializeBoard() {
-        for (let i = 0; i < 64; i++) {
-            const square = document.createElement('div');
-            square.classList.add('square');
-            squares.push(square);
-            board.appendChild(square);
+    <form action="/" method="POST">
+        <input type="text" name="context" id="content">
+        <input type="submit" value="Add Task">
+    </form>
 
-            const row = Math.floor(i / 8);
-            const col = i % 8;
-            const isWhite = (row + col) % 2 === 0;
-            square.classList.add(isWhite ? 'white' : 'black');
-        }
-    }
-
-    function renderPieces() {
-        squares.forEach((square, index) => {
-            square.textContent = piecePositions[index];
-        });
-    }
-
-    function isValidMove(selectedIndex, targetIndex) {
-        const selectedPiece = piecePositions[selectedIndex];
-        const targetPiece = piecePositions[targetIndex];
-
-        // Check if target square is occupied by a friendly piece
-        if (selectedPiece.toLowerCase() === targetPiece.toLowerCase()) {
-            return false;
-        }
-
-        // Implement specific rules for each piece
-        const rowDiff = Math.floor(selectedIndex / 8) - Math.floor(targetIndex / 8);
-        console.log(rowDiff)
-        let sign = true
-        const colDiff = Math.abs(selectedIndex % 8 - targetIndex % 8);
-
-        switch (selectedPiece.toLowerCase()) {
-            case 'p':
-                if (selectedPiece === 'p' && (rowDiff === -1 || rowDiff === -2) && colDiff === 0 && targetPiece === '') {
-                    return true;
-                }
-                break;
-            case 'r':
-                if ((rowDiff === 0 || colDiff === 0) && targetPiece === '') {
-                    return true;
-                }
-                break;
-            case 'n':
-                if ((rowDiff === -1 && colDiff === 2) || (rowDiff === -2 && colDiff === 1)) {
-                    return true;
-                }
-                break;
-            case 'b':
-                if (rowDiff === colDiff && targetPiece === '') {
-                    return true;
-                }
-                break;
-            case 'q':
-                if ((rowDiff === 0 || colDiff === 0 || rowDiff === colDiff) && targetPiece === '') {
-                    return true;
-                }
-                break;
-            case 'k':
-                if ((rowDiff <= 1 && colDiff <= 1) && targetPiece === '') {
-                    return true;
-                }
-                break;
-            default:
-                return false;
-        }
-        return false;
-    }
-
-    function movePiece(selectedIndex, targetIndex) {
-        if (!isValidMove(selectedIndex, targetIndex)) {
-            return false;
-        }
-
-        piecePositions[targetIndex] = piecePositions[selectedIndex];
-        piecePositions[selectedIndex] = '';
-        renderPieces();
-        return true;
-    }
-
-    function handleSquareClick(index) {
-        if (!selectedSquareIndex && piecePositions[index] !== '') {
-            selectedSquareIndex = index;
-        } else if (selectedSquareIndex !== null) {
-            if (movePiece(selectedSquareIndex, index)) {
-                selectedSquareIndex = null;
-            } else {
-                selectedSquareIndex = null;
-                alert('Invalid move!');
-            }
-        }
-    }
-
-    function setupBoardEventListeners() {
-        squares.forEach((square, index) => {
-            square.addEventListener('click', () => {
-                handleSquareClick(index);
-            });
-        });
-    }
-
-    let selectedSquareIndex = null;
-
-    function initializeGame() {
-        initializeBoard();
-        renderPieces();
-        setupBoardEventListeners();
-    }
-
-    initializeGame();
-</script>
-
-</body>
-</html>
+</div>
+{% endblock %}
