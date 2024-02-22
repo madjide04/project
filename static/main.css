@@ -1,40 +1,64 @@
 body, html {
     margin: 0;
     font-family: sans-serif;
-    background-color: lightblue;
+    background-color: rgb(2, 192, 255);
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3, h4, h5, h6, p {
     text-align: center;
 }
 
-.content {
-    margin: 0 auto;
-    width: 400px;
+#chessboard {
+    width: 320px; /* Set the width of the chessboard */
+    height: 320px; /* Set the height of the chessboard */
+    display: flex;
+    justify-content: center; /* Horizontally center the chessboard */
+    align-items: center; /* Vertically center the chessboard */
+    margin: auto;
+    flex-wrap: wrap; /* Allow squares to wrap to next line */
 }
 
-table, td, th {
-    border: 1px solid #aaa;
+.square {
+    height: 40px;
+    width: 40px;
+    position: relative;
 }
 
-table {
-    border-collapse: collapse;
-    width: 100%;
-}
-
-th {
+.square svg {
     height: 30px;
+    width: 30px;
+    margin: 5px;
+    position: relative;
+    z-index: -9;
+}
+path{
+    position: relative;
+    z-index: -10;
 }
 
-td {
-    text-align: center;
-    padding: 5px;
+.piece {
+    position: relative;
+    z-index: 9;
 }
 
-.form {
-    margin-top: 20px;
+.boardblack {
+    background-color: rgb(25, 25, 25);
 }
 
-#content {
-    width: 70%;
+.boardwhite {
+    background-color: rgb(246, 246, 246);
+}
+
+.blackpiece path {
+    fill: #222222; /* Dark gray for black pieces */
+    stroke: #CCCCCC ; /* Light gray for black pieces */
+}
+
+.whitepiece path {
+    fill: #EEEEEE ; /* Slightly off-white for white pieces */
+    stroke: #222222 ; /* Dark gray for border */
+}
+
+.draggable {
+    z-index: 10; /* Ensure draggable elements appear above other elements */
 }
