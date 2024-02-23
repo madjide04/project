@@ -1,3 +1,7 @@
 # Ignore virtual environment directory
+__pycache__/
+env
 venv/
 diagrams/
+pieces-svg/
+JohnPablok Cburnett Chess set/
