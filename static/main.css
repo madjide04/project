@@ -1,11 +1,13 @@
 body, html {
     margin: 0;
     font-family: sans-serif;
-    background-color: rgb(2, 192, 255);
+    background-color: rgb(170, 173, 174); /* background color here */
 }
 
 h1, h2, h3, h4, h5, h6, p {
     text-align: center;
+    margin: 5vh;
+    
 }
 
 #chessboard {
@@ -15,38 +17,40 @@ h1, h2, h3, h4, h5, h6, p {
     justify-content: center; /* Horizontally center the chessboard */
     align-items: center; /* Vertically center the chessboard */
     margin: auto;
+    margin-top: 0vh; /* view high unit  */
+    margin-bottom: 0vh; /* view high unit  */
     flex-wrap: wrap; /* Allow squares to wrap to next line */
 }
 
 .square {
     height: 40px;
     width: 40px;
-    position: relative;
+    position: relative; /* help set what is viewed first */
 }
 
 .square svg {
     height: 30px;
     width: 30px;
     margin: 5px;
-    position: relative;
-    z-index: -9;
+    position: relative; /* help set what is viewed first */
+    z-index: -9; /* help set what is viewed first */
 }
 path{
-    position: relative;
-    z-index: -10;
+    position: relative; /* help set what is viewed first */
+    z-index: -10; /* help set what is viewed first */
 }
 
 .piece {
-    position: relative;
-    z-index: 9;
+    position: relative; /* help set what is viewed first */
+    z-index: 9; /* help set what is viewed first */
 }
 
 .boardblack {
-    background-color: rgb(25, 25, 25);
+    background-color: rgb(25, 25, 25); /* black square color */
 }
 
 .boardwhite {
-    background-color: rgb(246, 246, 246);
+    background-color: rgb(246, 246, 246); /* white square color */
 }
 
 .blackpiece path {
@@ -61,4 +65,11 @@ path{
 
 .draggable {
     z-index: 10; /* Ensure draggable elements appear above other elements */
+}
+
+.button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 80vh;
 }

@@ -4,7 +4,20 @@
 {% endblock %}
 
 {% block body%}
+<h1>Chess Master</h1>
 <div id="chessboard"></div>
-<p>It is <span id="player"></span>'s turn, go!</p>
+<p>It is <span id="player"></span>'s turn, go!</p> 
+<!-- not set yet  -->
 <p id="display-info"></p>
+<!-- not set yet  -->
+<!-- make a submit button that redirects to game page  -->
+<div class="button">
+    <form action="/">
+        <input type="submit" value="go back">
+    </form>
+</div>
+<!-- import js file at the end to avoid errors -->
+<script type="text/javascript" src="{{ url_for('static', filename='pieces.js') }}"></script> 
+<script type="text/javascript" src="{{ url_for('static', filename='app.js') }}"></script>
+
 {% endblock %}
