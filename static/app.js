@@ -16,7 +16,7 @@ const startPieces = [
     rook,knight,bishop,queen,king,bishop,knight,rook
 ]
 
-
+const socket =  new WebSocket('ws://' + window.location.host + '/websocket');
 //implement piece movements/attack pattern 
 const pawnMove = [[2,0],[1,0]]
 const pawnTake = [[1,-1],[1,1]]
@@ -37,6 +37,7 @@ const bishopMove = [
     [-1, -1], [-2, -2], [-3, -3], [-4, -4], [-5, -5], [-6, -6], [-7, -7]
 ];
 const rookMove = [
+    // make castling possible later
     // Move horizontally (left and right)
     [0, 1], [0, 2], [0, 3], [0, 4], [0, 5], [0, 6], [0, 7],
     [0, -1], [0, -2], [0, -3], [0, -4], [0, -5], [0, -6], [0, -7],
@@ -115,6 +116,15 @@ let startPositionId
 let dragedElement
 let takenElement
 
+function calcRC(id) {
+    const draggedRow = Math.floor(id / width);
+    const draggedColumn = id % width;
+    return [ draggedRow, draggedColumn ];
+}
+
+function calcId(row,col) {
+    return row*8+col
+}
 
 function canMove(dragedClass,dragedId,droppedId){
 
@@ -160,12 +170,10 @@ function canTake(dragedClass,dragedId,droppedId,dragedColor,droppedColor){
         return false
     } else {
         // Calculate the row and column
-        const draggedRow = Math.floor(dragedId / width);
-        const draggedColumn = dragedId % width;
+        const [ draggedRow, draggedColumn ] = calcRC(dragedId);
 
         // Calculate the row and column
-        const droppedRow = Math.floor(droppedId / width);
-        const droppedColumn = droppedId % width;
+        const [ droppedRow, droppedColumn ] = calcRC(droppedId);
         
         // column and row difference 
         const rowDiff = draggedRow-droppedRow
@@ -196,6 +204,277 @@ function canTake(dragedClass,dragedId,droppedId,dragedColor,droppedColor){
     
 }
 
+function checkN(draggedRow, draggedColumn, droppedRow) {
+    let clearPath = true;
+    for (let index = parseInt(draggedRow) - 1; index > parseInt(droppedRow); index--) {
+        allSquares.forEach((square, i) => {
+            if (i === calcId(index, draggedColumn) && square.firstChild && square.firstChild.classList[0] === "piece") {
+                console.log(square.firstChild.classList[0], "i:", i, "/index: ", index, "/dropped row:", droppedRow);
+                clearPath = false;
+            }
+        });
+    }
+    return clearPath;
+}
+
+function checkS(draggedRow, draggedColumn, droppedRow) {
+    let clearPath = true;
+    for (let index = parseInt(draggedRow) + 1; index < parseInt(droppedRow); index++) {
+        allSquares.forEach((square, i) => {
+            if (i === calcId(index, draggedColumn) && square.firstChild && square.firstChild.classList[0] === "piece") {
+                console.log(square.firstChild.classList[0], "i:", i, "/index: ", index, "/dropped row:", droppedRow);
+                clearPath = false;
+            }
+        });
+    }
+    return clearPath;
+}
+
+function checkE(draggedRow, draggedColumn, droppedColumn) {
+    let clearPath = true;
+    for (let index = parseInt(draggedColumn) + 1; index < parseInt(droppedColumn); index++) {
+        allSquares.forEach((square, i) => {
+            if (i === calcId(draggedRow, index) && square.firstChild && square.firstChild.classList[0] === "piece") {
+                console.log(square.firstChild.classList[0], "i:", i, "/index:", index, "/Dropped Column:", droppedColumn);
+                clearPath = false;
+            }
+        });
+    }
+    return clearPath;
+}
+
+function checkW(draggedRow, draggedColumn, droppedColumn) {
+    let clearPath = true;
+    for (let index = parseInt(draggedColumn) - 1; index > parseInt(droppedColumn); index--) {
+        allSquares.forEach((square, i) => {
+            if (i === calcId(draggedRow, index) && square.firstChild && square.firstChild.classList[0] === "piece") {
+            console.log(square.firstChild.classList[0], "i:", i, "/index:", index, "/Dropped Column:", droppedColumn);
+            clearPath = false;
+        }
+    });
+}
+    return clearPath;
+}
+
+function checkAxis(draggedRow, draggedColumn, droppedRow, droppedColumn) {
+    // Determine the direction of movement
+    if (draggedRow === droppedRow) {
+        // Horizontal movement
+        if (draggedColumn < droppedColumn) {
+            return checkE(draggedRow, draggedColumn, droppedColumn);
+        } else {
+            return checkW(draggedRow, draggedColumn, droppedColumn);
+        }
+    } else if (draggedColumn === droppedColumn) {
+        // Vertical movement
+        if (draggedRow < droppedRow) {
+            return checkS(draggedRow, draggedColumn, droppedRow);
+        } else {
+            return checkN(draggedRow, draggedColumn, droppedRow);
+        }
+    } else {
+        // Diagonal movement (assuming only vertical and horizontal movements are allowed)
+        console.log("Diagonal movement is not supported.");
+        return true;
+    }
+}
+
+function checkNE(draggedRow, draggedColumn, droppedRow) {
+    let clearPath = true;
+    for (let index = parseInt(draggedRow) - 1; index > parseInt(droppedRow); index--) {
+        allSquares.forEach((square, i) => {
+            if (i === calcId(index, draggedColumn+(draggedRow-index)) && square.firstChild && square.firstChild.classList[0] === "piece") {
+                console.log(square.firstChild.classList[0], "i:", i, "/index: ", index, "/dropped row:", droppedRow);
+                clearPath = false;
+            }
+        });
+    }
+    return clearPath;
+}
+
+function checkNW(draggedRow, draggedColumn, droppedRow) {
+    let clearPath = true;
+    for (let index = parseInt(draggedRow) - 1; index > parseInt(droppedRow); index--) {
+        allSquares.forEach((square, i) => {
+            if (i === calcId(index, draggedColumn-(draggedRow-index)) && square.firstChild && square.firstChild.classList[0] === "piece") {
+                console.log(square.firstChild.classList[0], "i:", i, "/index: ", index, "/dropped row:", droppedRow);
+                clearPath = false;
+            }
+        });
+    }
+    return clearPath;
+}
+
+function checkSE(draggedRow, draggedColumn, droppedRow) {
+    let clearPath = true;
+    for (let index = parseInt(draggedRow) + 1; index < parseInt(droppedRow); index++) {
+        allSquares.forEach((square, i) => {
+            if (i === calcId(index, draggedColumn+(index-draggedRow)) && square.firstChild && square.firstChild.classList[0] === "piece") {
+                console.log(square.firstChild.classList[0], "i:", i, "/index: ", index, "/dropped row:", droppedRow);
+                clearPath = false;
+            }
+        });
+    }
+    return clearPath;
+}
+
+function checkSW(draggedRow, draggedColumn, droppedRow) {
+    let clearPath = true;
+    for (let index = parseInt(draggedRow) + 1; index < parseInt(droppedRow); index++) {
+        allSquares.forEach((square, i) => {
+            if (i === calcId(index, draggedColumn-(index-draggedRow)) && square.firstChild && square.firstChild.classList[0] === "piece") {
+                console.log(square.firstChild.classList[0], "i:", i, "/index: ", index, "/dropped row:", droppedRow);
+                clearPath = false;
+            }
+        });
+    }
+    return clearPath;
+}
+
+// function checkNW(draggedRow, draggedColumn, droppedRow) {
+//     let clearPath = true;
+//     for (let index = parseInt(draggedColumn) - 1; index > parseInt(droppedColumn); index--) {
+//         allSquares.forEach((square, i) => {
+//             if (i === calcId(draggedRow-(draggedColumn-index), index) && square.firstChild && square.firstChild.classList[0] === "piece") {
+//                 console.log(square.firstChild.classList[0], "i:", i, "/index:", index, "/Dropped Column:", droppedColumn);
+//                 clearPath = false;
+//             }
+//         });
+//     }
+//     return clearPath;
+// }
+
+// function checkSW(draggedRow, draggedColumn, droppedColumn) {
+//     let clearPath = true;
+//     for (let index = parseInt(draggedRow) + 1; index < parseInt(droppedRow); index++) {
+//         allSquares.forEach((square, i) => {
+//             if (i === calcId(index, draggedColumn-(index-draggedRow)) && square.firstChild && square.firstChild.classList[0] === "piece") {
+//                 console.log(square.firstChild.classList[0], "i:", i, "/index: ", index, "/dropped row:", droppedRow);
+//                 clearPath = false;
+//             }
+//         });
+//     }
+//     return clearPath;
+// }
+
+// function checkSE(draggedRow, draggedColumn, droppedColumn) {
+//     let clearPath = true;
+//     for (let index = parseInt(draggedColumn) + 1; index < parseInt(droppedColumn); index++) {
+//         allSquares.forEach((square, i) => {
+//             if (i === calcId(draggedRow+(index-draggedColumn), index) && square.firstChild && square.firstChild.classList[0] === "piece") {
+//                 console.log(square.firstChild.classList[0], "i:", i, "/index:", index, "/Dropped Column:", droppedColumn);
+//                 clearPath = false;
+//             }
+//         });
+//     }
+//     return clearPath;
+// }
+
+
+
+function checkDiagonal(draggedRow, draggedColumn, droppedRow, droppedColumn) {
+    if (Math.abs(droppedRow - draggedRow) !== Math.abs(droppedColumn - draggedColumn)) {
+        console.log("Invalid diagonal movement: Rows and columns must change by the same amount.");
+        return false;
+    }
+
+    if (droppedRow < draggedRow && droppedColumn < draggedColumn) {
+        console.log("chose NW");
+        return checkNW(draggedRow, draggedColumn, droppedRow);
+    } else if (droppedRow < draggedRow && droppedColumn > draggedColumn) {
+        console.log("chose NE");
+        return checkNE(draggedRow, draggedColumn, droppedRow);
+    } else if (droppedRow > draggedRow && droppedColumn < draggedColumn) {
+        console.log("chose SW");
+        return checkSW(draggedRow, draggedColumn, droppedRow);
+    } else if (droppedRow > draggedRow && droppedColumn > draggedColumn) {
+        console.log("chose SE");
+        return checkSE(draggedRow, draggedColumn, droppedRow);
+    }
+}
+
+function checkPath(draggedRow, draggedColumn, droppedRow, droppedColumn) {
+    // Check if it's diagonal movement
+    if (Math.abs(droppedRow - draggedRow) === Math.abs(droppedColumn - draggedColumn)) {
+        // Diagonal movement
+        if (droppedRow < draggedRow && droppedColumn < draggedColumn) {
+            console.log("chose NW");
+            return checkNW(draggedRow, draggedColumn, droppedRow);
+        } else if (droppedRow < draggedRow && droppedColumn > draggedColumn) {
+            console.log("chose NE");
+            return checkNE(draggedRow, draggedColumn, droppedRow);
+        } else if (droppedRow > draggedRow && droppedColumn < draggedColumn) {
+            console.log("chose SW");
+            return checkSW(draggedRow, draggedColumn, droppedRow);
+        } else if (droppedRow > draggedRow && droppedColumn > draggedColumn) {
+            console.log("chose SE");
+            return checkSE(draggedRow, draggedColumn, droppedRow);
+        }
+    } else {
+        // Axis movement
+        if (draggedRow === droppedRow) {
+            // Horizontal movement
+            if (draggedColumn < droppedColumn) {
+                return checkE(draggedRow, draggedColumn, droppedColumn);
+            } else {
+                return checkW(draggedRow, draggedColumn, droppedColumn);
+            }
+        } else if (draggedColumn === droppedColumn) {
+            // Vertical movement
+            if (draggedRow < droppedRow) {
+                return checkS(draggedRow, draggedColumn, droppedRow);
+            } else {
+                return checkN(draggedRow, draggedColumn, droppedRow);
+            }
+        } else {
+            console.log("Invalid movement: Only vertical, horizontal, or diagonal movements are allowed.");
+            return false;
+        }
+    }
+}
+
+
+
+function clearPath(dragedClass,dragedId,droppedId){
+    // clearPat = true
+
+    // Calculate the row and column
+    const [ draggedRow, draggedColumn ] = calcRC(dragedId);
+
+    // Calculate the row and column
+    const [ droppedRow, droppedColumn ] = calcRC(droppedId);
+
+    // console.log("-",droppedId,"-")
+    
+    // return checkN(draggedRow, draggedColumn, droppedRow)
+    // return checkAxis(draggedRow, draggedColumn, droppedRow, droppedColumn)
+    // // column and row difference 
+    // const rowDiff = draggedRow-droppedRow
+    // const colDiff = draggedColumn-droppedColumn
+
+    switch (dragedClass) {
+        case "pawn" :
+            return checkN(draggedRow, draggedColumn, droppedRow)
+        case "bPawn":
+            return checkS(draggedRow, draggedColumn, droppedRow)
+    //     case "knight":
+    //         return knightMove.some(([row, col]) => row === rowDiff && col === colDiff);
+        case "bishop":
+            return checkDiagonal(draggedRow, draggedColumn, droppedRow, droppedColumn)
+        case "rook":
+            return checkAxis(draggedRow, draggedColumn, droppedRow, droppedColumn)
+        case "queen":
+            return checkPath(draggedRow, draggedColumn, droppedRow, droppedColumn)
+    //     case "king":
+    //         return kingMove.some(([row, col]) => row === rowDiff && col === colDiff);
+        default:
+            return true;
+    }
+        
+    
+
+}
+
 function dragStart(e){
     // console.log("Clicked square:", e.target);
     // console.log("Draggable attribute:", e.target.getAttribute("draggable"));
@@ -215,6 +494,9 @@ function dragStart(e){
 function dragOver(e){
     //remove updates from consolelog
     e.preventDefault()
+}
+function handleChessEvent(event, data) {
+    socket.send(JSON.stringify({ event: event, data: data }));
 }
 
 function dragDrop(e){
@@ -247,8 +529,11 @@ function dragDrop(e){
             ////
             // console.log(canMove(dragedElement.classList[1],dragedId,dropedId))
             //console.log(dragedElement.firstChild.classList)
-            if (canMove(dragedElement.classList[1],dragedId,dropedId)) {
+            if (canMove(dragedElement.classList[1],dragedId,dropedId)&& clearPath(dragedElement.classList[1], dragedId, dropedId)) {
                 // add logic for chen the path is blocked later
+                // console.log(clearPath(dragedElement.classList[1], dragedId, dropedId))
+
+               handleChessEvent("move" , dropedId);
                 e.target.append(dragedElement);
             }
         } else {
@@ -263,10 +548,19 @@ function dragDrop(e){
             // console.log(dropedId)
             //check if not the same square and if target piece is enemy and if move legal 
             if (e.target.parentNode.getAttribute('square-id') !== dragedElement.parentNode.getAttribute('square-id')
-                 && canTake(dragedElement.classList[1], dragedId, dropedId,dragedColor ,droppedColor)) {
+                 && canTake(dragedElement.classList[1], dragedId, dropedId,dragedColor ,droppedColor) && clearPath(dragedElement.classList[1], dragedId, dropedId)) {
                 //removed {e.target.parentNode &&} from condition because i cant remember what bug it caused 
+                
+                const { droppedRow, droppedColumn } = calcRC(dragedId);
+                const { draggedRow, draggedColumn } = calcRC(dragedId);
+
+                console.log(clearPath(dragedElement.classList[1], dragedId, dropedId,dragedColor))
+
+                handleChessEvent("move" , dropedId);
                 e.target.parentNode.append(dragedElement);
+                
                 e.target.remove();
+
             }            
         }
     }

@@ -1,7 +1,7 @@
 body, html {
     margin: 0;
     font-family: sans-serif;
-    background-color: rgb(170, 173, 174); /* background color here */
+    background-color: #F2E29F; /* background color here */
 }
 
 h1, h2, h3, h4, h5, h6, p {
@@ -46,21 +46,21 @@ path{
 }
 
 .boardblack {
-    background-color: rgb(25, 25, 25); /* black square color */
+    background-color: #0A1416; /* black square color */
 }
 
 .boardwhite {
-    background-color: rgb(246, 246, 246); /* white square color */
+    background-color: #FEF6E1; /* white square color */
 }
 
 .blackpiece path {
-    fill: #222222; /* Dark gray for black pieces */
-    stroke: #CCCCCC ; /* Light gray for black pieces */
+    fill: #0A1416; /* Dark gray for black pieces */
+    stroke: #dad3c3 ; /* Light gray for black pieces */
 }
 
 .whitepiece path {
-    fill: #EEEEEE ; /* Slightly off-white for white pieces */
-    stroke: #222222 ; /* Dark gray for border */
+    fill: #FEF6E1 ; /* Slightly off-white for white pieces */
+    stroke: #14272b ; /* Dark gray for border */
 }
 
 .draggable {
