@@ -1,0 +1,58 @@
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='welcome.css') }}"> 
+{% endblock %}
+
+{% block body %}
+
+<nav>
+    <ul>
+        <div id="items">
+            <li><a href="{{ url_for('index') }}" id="ho">Home</a></li>
+            <li><a href="{{ url_for('rules') }}" id="ho">Rules</a></li>
+            <div id="right">
+                <li><a href="{{ url_for('profile')}}" id="ho">Profile</a></li>
+                <li><a id="ho" onclick="toggleModes()">Play</a></li>
+            </div>
+        </div>
+    </ul>
+</nav>
+
+<div id="logo-container">
+    <img id="logo" src="{{ url_for('static', filename='images/crown-logo.png') }}">
+</div>
+
+<h1 class="glow">Chess Mates</h1>
+<p>Step into the world of strategic brilliance and tactical mastery with our immersive chess game. Whether you're a seasoned grandmaster or a curious beginner, our platform offers an engaging and rewarding chess experience for all skill levels</p>
+
+<div class="buttons">
+   <button class="button1"><a href="{{ url_for('contactus')}}">Contact Us</a></button>
+   <button class="button1">
+    <img src="{{ url_for('static', filename='images/login-icon.svg') }}">
+    {% if user == "guest" %}
+        <a id="login" href="{{ url_for('login') }}">Log In</a>
+    {% else %}
+        <a id="login" href="{{ url_for('logout') }}">Log Out</a>
+    {% endif %}
+</button>
+   <button class="button2"><a href="{{ url_for('game') }}">Play</a></button>
+</div>
+
+<div id="modesMenu" class="modes-menu">
+    <ul>
+        <li><a onclick="selectOption('player')">Against a Player</a></li>
+        <li><a onclick="selectOption('chess_bot')">Against an AI Bot</a></li>
+    </ul>
+    <img id="playerIcon" src="{{ url_for('static', filename='images/chess-queen-svgrepo-com.svg') }}">
+    <img id="botIcon" src="{{ url_for('static', filename='images/chess-king-svgrepo-com.svg') }}">
+</div>
+
+<form id="gameForm" action="/game" method="POST" style="display: none;">
+    <input type="hidden" id="selectedValue" name="selected_value" value="one">
+    <input type="hidden" id="name" name="name" value="our ai">
+    <input type="hidden" id="hardness" name="hardness" value="1">
+    <input type="hidden" id="color" name="color" value="w">
+</form>
+
+<script src="{{ url_for('static', filename='welcome.js') }}"></script>
+
+{% endblock %}

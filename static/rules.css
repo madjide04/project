@@ -1,0 +1,190 @@
+body {
+    background-color: #0A1416;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background: radial-gradient(circle at center , #a17b6293, transparent 100%) ;
+  background-color: #000000dc;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+    overflow-x: hidden;
+    zoom: 1;
+}
+a{
+    text-decoration: none;
+    cursor: pointer;
+    caret-color: transparent; 
+    
+}
+a:active {
+    text-decoration: none; /* Remove underline when clicking */
+}
+a:focus {
+    outline: none; /* Remove the outline */
+}
+nav {
+    background-color: rgba(0, 0, 0, 0);
+    width: 100%; 
+    height: 150px;
+    position:absolute ;
+    top: 0 ;
+    padding-top: 0px;
+    z-index: 999;
+
+}
+ul{
+    display: flex; 
+    justify-content: space-between; 
+    list-style: none;
+    margin-left: 10vh;
+}
+#items{
+    display: flex;
+    justify-content: space-around;
+    margin-top: 25px;
+    margin-right: 100px;
+}
+#items li {
+    margin-right: 100px;
+    margin-top: 20px;
+    font-family: 'Times New Roman', Times, serif;
+ }
+
+#items li .nav-link {
+    letter-spacing: 3px;
+    text-transform: uppercase;
+   font-size: 15px;
+   color: aliceblue;
+   outline: none;
+   margin-left: 20px;
+   margin-top: 40px;
+    
+}
+#right {
+    display: flex;
+    margin-left: 500px;
+}
+#items li .nav-link:hover {
+    animation: animate 1s both linear;
+}
+.nav-link.active {
+    color: #fff;
+    text-shadow: 
+            -2px 0 10px #ffffffcb,
+            -4px 0 20px #ffffffcb,
+            -6px 0 40px #ffffffcb,
+            -8px 0 80px #ffffffcb,
+            -10px 0 160px #ffffffcb;
+}
+
+@keyframes animate {
+    0% {
+        color: #c0c0c0;
+        text-shadow: none;
+    }
+    100% {
+        color: #fff;
+        text-shadow: 
+            -2px 0 10px #ffffffcb,
+            -4px 0 20px #ffffffcb,
+            -6px 0 40px #ffffffcb,
+            -8px 0 80px #ffffffcb,
+            -10px 0 160px #ffffffcb; /* Adjust the horizontal offset */
+    }
+}
+
+#titres{
+    margin-top:20px;
+}
+
+#page{ /* hadi div l'mo7it li fih lktiba ga3 */
+    margin-top: 120px;
+    background-color: #8b8b8b48;
+    color: #ffffffaf;
+    padding-top: 1cm;
+    padding-left: 30px;
+    padding-right: 30px;
+    margin-left:100px;
+    width: 1000px;
+    z-index: -999;
+    border-radius: 20px;
+}
+
+#titres #firstone{ /* hadi lparagraphe sghir li jay lfo9 ga3 ta7t RULES */
+    color: #ffffffc2;
+    text-align:left;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 10px;
+}
+
+ol li{
+    color: #ffe7d7;
+    margin-left: 190px;
+    font-size: 20px;
+}
+ol li a {
+    color: #ffecdf; /* Change the color to your desired color */
+    text-decoration: none; /* Remove the default underline */
+}
+
+/* Change the color when hovering over the links */
+ol li a:hover {
+    color: rgb(255, 204, 147); /* Change the color to your desired color */
+}
+
+#imgs {
+    display: flex; /* Use flexbox to align images in a row */
+    justify-content: center; /* Center the images horizontally */
+}
+
+
+
+strong{ /* les titres de step et sous titres */
+    color: rgb(255, 204, 147);
+}
+.modes-menu {
+    color: #fff;
+    display: none;
+    position: absolute;
+    top: 80px;
+    left: 1050px;
+    background-color: #4d3b2f00; /* Change background color to black */
+    border: 1px solid transparent;
+    padding: 10px;
+    border-image: linear-gradient(to right, #D9B78A, #965C34) 1; /* Apply border image */
+    width: 150px;
+    height: 90px; /* Set width to auto */
+    z-index: 1000;
+}
+
+.modes-menu ul {
+    list-style-type: none; /* Remove default list style */
+    padding: 0; /* Remove default padding */
+    margin: 0; 
+    display: block;/* Remove default margin */
+}
+
+.modes-menu ul li {
+    margin-bottom: 10px;
+    margin-top: 20px;
+    margin-left: 27px; /* Add margin between list items */
+}
+
+.modes-menu ul li a {
+    text-decoration: none;
+    color: white; /* Set text color to white */
+    display: block;
+}
+#playerIcon {
+    position: absolute;
+    top: 26px;
+    right:140px ;
+}
+#botIcon {
+    position: absolute;
+    top: 65px;
+    right:140px ;
+}
+#img {
+    height: 400px;
+    width: 403px;
+}

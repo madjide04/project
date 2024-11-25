@@ -1,0 +1,161 @@
+body{
+    background: radial-gradient(circle at center, #c5a48d96, transparent 100%) top right;
+    background-color: #000000;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    overflow: hidden;
+    zoom: 1;
+}
+*{
+  margin: 0;
+  border: 0;
+  box-sizing: border-box;
+}
+
+
+.infodiv{
+    background-color: rgb(253, 253, 253);
+   width: 450px;
+   height: 500px;
+   position: absolute;
+   top: 80px;
+   left: 430px;
+   border: 1px solid ;
+  background-color: #69696936;
+  color: #fff;
+  border-image: linear-gradient(to right, #D9B78A, #965C34) 1 round; /* Gradient border color */
+  border-image-slice: 1;
+   overflow: hidden;
+
+}
+.return{
+    position: absolute;
+    top: 60px;
+    left: 40px;
+   
+}
+.return img{
+    width: 30px;
+}
+.button-box{
+    width: 220px;
+    margin: 60px auto;
+    position: absolute;
+    top: 10px;
+    left: 540px;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0 0 20px rgba(7, 7, 7, 0.5), 0 0 30px rgba(243, 205, 180, 0.5), 0 0 40px rgba(243, 205, 180, 0.5);
+    border-radius: 30px;
+    z-index: 2;
+}
+.toggle-btn{
+    padding: 10px 30px;
+    margin-left: 3px;
+    cursor: pointer;
+    background: transparent;
+    z-index: 0;
+    border: 0 ;
+     outline: none;
+    position: relative;
+}
+
+#btn{
+    top: 0;
+    left:-3px;
+    position: absolute;
+    width: 110px;
+    height: 100%;
+    background: linear-gradient(to left, #D9B78A, #965C34);
+    border-radius: 30px;
+    transition: .5s;
+    
+}
+.social-icons{
+    position: absolute;
+    top: 480px;
+    left: 145px;
+    margin:auto;
+    text-align: center;
+}
+.social-icons svg{
+    width: 30px;
+    margin: 0 8px;
+    
+    margin-top: -450px;
+    margin-bottom: -10px;
+    border-radius: 50%;
+}
+.social-icons a {
+    cursor: pointer;
+}
+   
+.input-group{
+    position: absolute;
+    top: 100px;
+    left: -10px;
+    height: 500px;
+    width: 180px;
+    transition: .5s;
+}
+.input-field{
+    width: 100%;
+    padding: 10px 0;
+    
+    border-left: 0;
+    border-right: 0;
+    border-top: 0;
+    border-bottom: 1px solid #ffffff;
+    outline: none;
+    background: transparent;
+    color: white !important;
+    z-index: 2;
+}
+#login #password {
+    margin-top: 20px;
+}
+.submit-btn{
+    margin-top: 5px;
+    background: black;
+    width: 200px;
+    height: 38px;
+    border: 1.5px solid ;
+  background-image: none;
+  color: #fff;
+  border-image: linear-gradient(to right, #D9B78A, #965C34) 1 round; /* Gradient border color */
+  border-image-slice: 1;
+    cursor: pointer;
+    display: block;
+    font-family: roboto;
+    font-size: 16px;
+    color: #ffffff;
+}
+
+.check-box{
+    margin: 15px 10px 20px 0;
+}
+
+span{
+    color: #d3d3d3d8;
+    font-size: 12px;
+}
+.or{
+    position: absolute;
+    top: 370px;
+    left: 45px;
+    margin-top: auto;
+}
+#login{
+    margin-left: 130px;
+    margin-right: 130px;
+}
+#register {
+    position: absolute;
+    top: 90px;
+    left: 400px;
+    margin-left: 130px; /* Adjusted initial left position */
+    width: 200px;
+    transition: .5s;
+}
+
+

@@ -1,0 +1,281 @@
+body {
+    background-image: url('images/background-image.jpg');
+    background-color: rgb(0, 0, 0);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: 0px 0px;
+    margin: 0;
+    padding: 0;
+    font-family: "Times New Roman", Times, serif;
+    height: 100vh;
+    overflow: hidden;
+}
+
+body::before {
+    content: ""; /* Create a pseudo-element */
+    position: absolute; /* Position the pseudo-element */
+    top: 0;
+    left: 0;
+    width: 100%; /* Cover the entire viewport */
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Transparent black color */
+    z-index: 1; /* Ensure the pseudo-element is above the background image */
+}
+
+#logo-container {
+    position: relative;
+}
+
+#logo {
+    width: 4.6%;
+    height: auto;
+    position: absolute;
+    top: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 40%;
+    z-index: 2; /* Increased z-index to ensure the logo appears above the light overlay */
+}
+
+.glow {
+    font-family: "Times New Roman", Times, serif;
+    font-size: 60px;
+    color: #c0c0c0;
+    text-shadow: 0 0 5px rgba(192, 192, 192, 0.5);
+    animation: glow-animation 2s ease-in-out infinite alternate; 
+    position: absolute;
+    top: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2; /* Increased z-index to ensure the text glow appears above the light overlay */
+}
+
+@keyframes glow-animation {
+    from {
+        text-shadow: 0 0 5px rgba(192, 192, 192, 0.5);
+    }
+    to {
+        text-shadow: 0 0 20px rgba(192, 192, 192, 0.5), 0 0 30px rgba(192, 192, 192, 0.5), 0 0 40px rgba(192, 192, 192, 0.5);
+    }
+}
+
+.glow::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    color: transparent;
+    text-shadow: 0 0 20px rgba(243, 205, 180, 0.5), 0 0 30px rgba(243, 205, 180, 0.5), 0 0 40px rgba(243, 205, 180, 0.5);
+}
+p{
+    color: #ffffffc0;
+    position: absolute;
+    top: 176px;
+    left: 450px;
+    right: 450px;
+    font-size: 12px;
+    text-align: center;
+    z-index: 2;
+}
+a{
+    text-decoration: none;
+    cursor: pointer;
+    caret-color: transparent; 
+    
+}
+a:active {
+    text-decoration: none; /* Remove underline when clicking */
+}
+a:focus {
+    outline: none; /* Remove the outline */
+}
+nav {
+    background-color: rgba(0, 0, 0, 0);
+    width: 100%; 
+    height: 150px;
+    position:absolute ;
+    top: 0 ;
+    padding-top: 0px;
+    z-index: 999;
+
+}
+ul{
+    display: flex; 
+    justify-content: space-between; 
+    list-style: none;
+    margin-left: 8vh;
+}
+#items{
+    display: flex;
+    justify-content: space-around;
+    margin-top: 25px;
+    margin-right: 100px;
+}
+#items li {
+    margin-right: 100px;
+    margin-top: 20px;
+}
+#items li #ho {
+    letter-spacing: 3px;
+    text-transform: uppercase;
+   font-size: 15px;
+   color: aliceblue;
+   outline: none;
+   margin-left: 40px;
+   
+    
+}
+
+#items li #ho:hover {
+    animation: animate 1s both linear;
+}
+
+@keyframes animate {
+    0% {
+        color: #c0c0c0;
+        text-shadow: none;
+    }
+    100% {
+        color: #fff;
+        text-shadow: 
+            -2px 0 10px #ffffffcb,
+            -4px 0 20px #ffffffcb,
+            -6px 0 40px #ffffffcb,
+            -8px 0 80px #ffffffcb,
+            -10px 0 160px #ffffffcb; /* Adjust the horizontal offset */
+    }
+}
+
+#ho1 {
+   position: absolute;
+   top: 45px;
+   transition: filter 0.3s ease-in-out;  
+}
+#ho1:hover {
+    filter: drop-shadow(0 0 7px #ffffffcb);
+}
+.buttons {
+    position: absolute;
+    top: 400px;
+    left: 50px;
+    z-index: 2;
+    display: flex; /* Use flexbox */
+    flex-direction: column; /* Set the flex direction to column */
+}
+
+/* Remove margin-bottom from button style */
+.button1 {
+    border: 2px solid;
+    background-color: black;
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(217, 183, 138, 0.5);
+    border-image: linear-gradient(to right, #d9b78a, #965c34) 1 round; /* Gradient border color */
+    border-image-slice: 1; /* Ensure full border coverage */
+    padding: 10px 20px;
+    margin-bottom: 10px; /* Add some spacing between buttons */
+    width: 190px; /* Adjust the width as needed */
+}
+
+button {
+    height: 40px;
+    width: 190px;
+}
+.buttons a {
+    text-decoration: none;
+     /* Display buttons as block elements */
+    margin-bottom: 10px; /* Add some spacing between buttons */
+}
+.button1 {
+    border: 2px solid ;
+    background-color: black;
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(217, 183, 138, 0.5);
+    border-image: linear-gradient(to right, #D9B78A, #965C34) 1 round; /* Gradient border color */
+    border-image-slice: 1; /* Ensure full border coverage */
+    padding: 10px 20px;
+    
+}
+.button1 a {
+    color: white;
+    text-shadow: 2px #965C34;
+    margin: 10px;
+    font-size: 15px;
+    font-family:  "Times New Roman", Times, serif;
+    letter-spacing: 1px;
+ 
+}
+.login{
+    margin-top: -20px ;
+}
+.button1 img {
+    position: absolute;
+    top: 60px;
+    left: 40px;
+}
+.button2 {
+    height: 36px;
+    border: 1px solid transparent;
+    border-radius: 19px;
+    margin-top: 15px;
+    background-image: linear-gradient(to left, #D9B78A, #965C34) ;
+    box-shadow: 0 0 8px rgb(0, 0, 0);
+}
+.button2 a {
+    color: black;
+    font-size: 21px;
+    letter-spacing: 0.5px;
+    font-family:  "Times New Roman", Times, serif;
+    
+}
+#right {
+    display: flex;
+    margin-left: 450px;
+}
+.modes-menu {
+    color: #fff;
+    display: none;
+    position: absolute;
+    top: 80px;
+    left: 1140px;
+    background-color: #4d3b2f00; /* Change background color to black */
+    border: 1px solid transparent;
+    padding: 10px;
+    border-image: linear-gradient(to right, #D9B78A, #965C34) 1; /* Apply border image */
+    width: 150px;
+    height: 90px; /* Set width to auto */
+    z-index: 1000;
+}
+
+.modes-menu ul {
+    list-style-type: none; /* Remove default list style */
+    padding: 0; /* Remove default padding */
+    margin: 0; 
+    display: block;/* Remove default margin */
+}
+
+.modes-menu ul li {
+    margin-bottom: 10px;
+    margin-top: 20px;
+    margin-left: 27px; /* Add margin between list items */
+}
+
+.modes-menu ul li a {
+    text-decoration: none;
+    color: white; /* Set text color to white */
+    display: block;
+}
+#playerIcon {
+    position: absolute;
+    top: 26px;
+    right:140px ;
+}
+#botIcon {
+    position: absolute;
+    top: 65px;
+    right:140px ;
+}
+
+
+
+

@@ -1,0 +1,18 @@
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+
+<!-- Uploaded to: SVG Repo, www.svgrepo.com, Transformed by: SVG Repo Mixer Tools -->
+<svg width="40px" height="40px" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#D9B78A;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#965C34;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <g id="SVGRepo_bgCarrier" stroke-width="0"/>
+  <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/>
+  <g id="SVGRepo_iconCarrier">
+    <title>ionicons-v5-c</title>
+    <polyline points="112 160 48 224 112 288" style="fill:url(#gradient);stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"/>
+    <path d="M64,224H358c58.76,0,106,49.33,106,108v20" style="fill:none;stroke:url(#gradient);stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"/>
+  </g>
+</svg>

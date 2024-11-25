@@ -1,0 +1,46 @@
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='welcome.css') }}"> 
+{% endblock %}
+
+
+{% block body %}
+
+    <nav>
+        <ul>
+            <div id="items">
+                <li><a contenteditable="true" href="#" id="ho1"><img src="{{ url_for('static', filename='settings-svgrepo-com.svg') }}"></a></li>
+                <li><a contenteditable="true" href="{{ url_for('welcome') }}" id="ho">Home</a></li>
+                <li><a contenteditable="true" href="#" id="ho">Rules</a></li>
+                <div id="right">
+                    <li><a contenteditable="true" href="#" id="ho">Profile</a></li>
+                    <li><a contenteditable="true" href="#" id="ho"  onclick="toggleModes()" >Modes</a></li>
+                </div>
+            </div>
+        </ul>
+    </nav>
+
+    <div id="logo-container">
+        <img id="logo" src="{{ url_for('static', filename='a simple textured silver crown logo with a subtle glow on a black background.png') }}">
+    </div>
+
+    <h1 class="glow">Chess Mates</h1>
+    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Natus perspiciatis facilis reiciendis, ratione consequatur obcaecati iure qui. Nisi rerum veritatis deserunt error, quas illum laboriosam odit eveniet pariatur, nostrum eum!</p>
+
+    <div class="buttons">
+       <button class="button1"><a href="">Contact Us</a></button>
+       <button class="button1" ><img src="{{ url_for('static', filename='log-in-1-svgrepo-com.svg') }}"><a id="login" href="{{ url_for('login') }}">Log In</a></button>
+       <button class="button2"><a href="{{ url_for('first') }}">Play</a></button>
+    </div>
+
+    <div id="modesMenu" class="modes-menu">
+        <ul>
+            <li><a href="#">Computer</a></li>
+            <li><a href="#">Tournament</a></li>
+        </ul>
+        <img id="computer" src="{{ url_for('static', filename='online-game-online-chess-online-tournament-svgrepo-com.svg') }}">
+        <img id="tournament" src="{{ url_for('static', filename='champion-cup-svgrepo-com.svg') }}">
+    </div>
+
+    <script src="{{ url_for('static', filename='try.js') }}"></script>
+
+{% endblock %}

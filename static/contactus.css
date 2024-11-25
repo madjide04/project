@@ -1,0 +1,155 @@
+body {
+    background: radial-gradient(circle at top right, #c5a48d96, transparent 50%) top right;
+    background-color: #000000;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    zoom: 1;
+}
+
+* {
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+.content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    transform-origin: center center;
+    zoom: 1;
+}
+
+#logo {
+    position: absolute;
+    top: -110px;
+    left: 10px;
+    height: 800px;
+}
+
+.container {
+    margin-left: 330px;
+    min-height: 100vh;
+    background: #ffffff8f;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: url("chesss.jpg") no-repeat center center/cover;
+    zoom: 1;
+}
+
+.return {
+    position: fixed;
+    top: 50px;
+    left: 50px;
+    z-index: 2;
+}
+
+.container form {
+    width: 670px;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    box-shadow: 20px 20px 50px rgba(0, 0, 0, 0.5);
+    border-radius: 15px;
+    background: rgba(245, 245, 245, 0.274);
+    backdrop-filter: blur(25px);
+    flex-wrap: wrap;
+    color: #FFFFFF;
+}
+
+.container form h1 {
+    color: #ffffff;
+    font-weight: 500;
+    margin-top: 20px;
+    width: 500px;
+    text-align: center;
+}
+
+.container form input {
+    width: 290px;
+    height: 40px;
+    padding-left: 10px;
+    outline: none;
+    border: none;
+    font-size: 15px;
+    margin-bottom: 10px;
+    background: none;
+    border-bottom: 2px solid #ffffff;
+}
+
+.container form input::placeholder {
+    color: #ffffff62;
+}
+
+.container form #lastName,
+.container form #mobile {
+    margin-left: 20px;
+}
+
+.container form textarea {
+    background: none;
+    border: none;
+    border-bottom: 2px solid #ffffff;
+    color: #ffffff;
+    font-weight: 200;
+    font-size: 15px;
+    padding: 10px;
+    outline: none;
+    min-width: 600px;
+    max-width: 600px;
+    min-height: 80px;
+    max-height: 80px;
+}
+
+textarea::-webkit-scrollbar {
+    width: 1em;
+}
+
+textarea::-webkit-scrollbar-thumb {
+    background-color: rgba(194, 194, 194, 0.713);
+}
+
+.container form #button {
+    background: linear-gradient(to left, #D9B78A, #965C34);
+    border: 0;
+    border-radius: 12px;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    font-family: -apple-system, system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 2.5;
+    outline: transparent;
+    padding: 0 1rem;
+    text-align: center;
+    text-decoration: none;
+    transition: box-shadow .2s ease-in-out;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    white-space: nowrap;
+    width: 80px;
+}
+
+.container form #button:not([disabled]):focus {
+    box-shadow: 0 0 .25rem rgba(0, 0, 0, 0.5), -.125rem -.125rem 1rem rgba(239, 71, 101, 0.5), .125rem .125rem 1rem rgba(255, 154, 90, 0.5);
+}
+
+.container form #button:not([disabled]):hover {
+    box-shadow: 0 0 .25rem rgba(0, 0, 0, 0.5), -.125rem -.125rem 1rem rgba(36, 28, 30, 0.5), .125rem .125rem 1rem rgba(255, 154, 90, 0.5);
+}
+
+input {
+    color: #ffffff;
+}
+
+#firstName {
+    color: #ffffff;
+}

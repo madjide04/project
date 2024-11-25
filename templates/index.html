@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block head%}
+{% endblock %}
+
+{% block body%}
+<h1>Chess Master: 
+    <!-- {% if init_state %} {{ init_state }} {% endif %} -->
+</h1>
+<div id="chessboard" opponent="{{opponent}}" initial_state="{{init_state}}"> </div>
+<!-- <div id="gameover"></div> -->
+<p>It is <span id="player"></span>'s turn, go!</p> 
+<!-- not set yet  -->
+<p id="display-info"></p>
+<!-- not set yet  -->
+<!-- make a submit button that redirects to game page  -->
+<div class="button">
+    <form action="/">
+        <input type="submit" value="go back">
+    </form>
+</div>
+<!-- import js file at the end to avoid errors -->
+<script type="text/javascript" src="{{ url_for('static', filename='chessboard-1.0.0.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='chess.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='socket.io.js') }}"></script>
+<!-- <script src="/socket.io/socket.io.js"></script> -->
+<script type="text/javascript" src="{{ url_for('static', filename='pieces.js') }}"></script> 
+<script type="text/javascript" src="{{ url_for('static', filename='app02.js') }}"></script>
+<!-- <script src="/socket.io/socket.io.js"></script> -->
+
+
+{% endblock %}

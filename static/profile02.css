@@ -1,0 +1,302 @@
+@font-face {
+    font-family: 'Bricolage';
+    src: url(fonts/BricolageGrotesque-VariableFont_opsz\,wdth\,wght.ttf);
+    }
+*{
+    font-family: 'Bricolage';
+    max-width: 100%;
+}
+
+body, html {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index:-3;
+}
+
+#background {
+    background-image: url("images/bg.jpg"); /* Path to your background photo */
+    background-size: cover; /* Cover the entire background */
+    background-position: center; /* Center the background image */
+}
+
+.card {
+    width: 500px; 
+    height: 500px; 
+    border-radius: 40px;
+    background-color: rgb(82, 82, 82); 
+    text-align: center; /* center the text inside if exists */    
+    line-height: 100px; /* Adjust the line height to vertically center text */
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    position: relative;
+    top:40px;
+    z-index: -2;
+    border:#ffffff 8px solid;
+}
+
+.card #circle { /* circle li fih la photo */
+    border-radius: 100px;
+    position: absolute;
+    width: 180px; /* Adjust as needed */
+    height: 180px; /* Adjust as needed */
+    border-radius: 70%; /* Makes the div circular */
+    position: absolute;
+    top: 90px;
+    border: #000000 solid 7px;
+    z-index: 2;
+}
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 50% 75%;
+    }
+    100% {
+        background-position: 75% 100%;
+    }
+}
+
+#square {
+    width: 500px; /* Adjust the width of the square */
+    height: 305px; /* Adjust the height of the square */
+    background: linear-gradient(to bottom, rgb(97, 97, 97),#1f1f1f);position: absolute;
+    top:195px;
+    z-index: -1;
+    border-radius: 0 0 30px 30px;
+    animation:gradientAnimation 4s  infinite;
+}
+
+
+#upper-photo {
+    width: 100%;
+    height: 44%;
+    position: absolute;
+    top:-33px;
+    z-index: inherit;
+}
+
+#upper-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-top-left-radius: 40px;
+    border-top-right-radius: 40px;
+    z-index: inherit; 
+}
+
+.card #circle::before,.card #circle::after {
+    content: '';
+    position: absolute;
+    height: 8px;
+    background-color:#000000; /* Set the background color of the lines */
+    top: 50%;
+    z-index: -1;
+}
+
+.card #circle::before {
+    width: 175px;
+    left: -160px; /* Adjust distance from the circle */
+}
+
+.card #circle::after {
+    width: 175px;
+    right: -160px; /* Adjust distance from the circle */
+}
+
+.card #circle img { /* hadi la photo */
+    z-index: 1;
+    width: 100%; /* Ensure the image fills the circle */
+    height: 100%; /* Ensure the image fills the circle */
+    object-fit: cover; /* Cover the entire area of the circle */
+    border-radius: 50%;
+} 
+
+.card #name-level {
+    font-size: larger;
+    font-weight: 800;
+    position: absolute;
+    margin-top: 18px;
+    margin-left: 25px;
+    left: 20px;
+    display: flex;
+    justify-content: space-between;
+    top: 239px;
+    width: 80%;
+}
+
+.profile-info, .level-info {
+    text-align: left;
+    color: rgb(0, 0, 0);
+}
+
+.level-info  span{
+    margin-right: 10px;
+}
+
+.profile-info span{
+    margin-right: 10px;
+}
+
+.game-stats {
+    font-weight: 500;
+    position: absolute;
+    top: 330px; /* Adjust the vertical position */
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    
+}
+
+.game-stats button{
+    height: 0px;
+    background-color: #8a5430;
+    border-radius: 23px;
+}
+
+.stat{
+    text-align: left;
+    position: relative;
+    top: 80px;
+    color: rgb(97, 97, 97);
+    cursor: pointer; /* Add cursor pointer for better UX */
+}
+
+#name-level .profile-info img {
+    margin: -10px;
+    width: 35px; 
+    height: 35px;
+    margin-left: 10px; /* Add margin for spacing */
+}
+
+#name-level .name img {
+    width: 20px; /* Adjust the width of the flag image */
+    height: auto; /* Maintain aspect ratio */
+    margin-right: 5px;
+}
+
+.card #name-level {
+    font-size: larger;
+    font-weight: 800;
+    position: absolute;
+    top: 210px; /* Adjust the vertical position */
+    left: 20px;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.profile-info {
+    width: 90px;
+    height: 40px;
+}
+
+#name-level .name{
+    margin-top: 37px;
+}
+
+.profile-info .ID {
+    position: absolute;
+    top:29px;
+}
+
+.profile-info .level-info {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    right: -10px;
+    top:30px;
+    margin-right: -10px; 
+}
+
+.profile-info .level-info img {
+    width: 20px; /* Adjust the width of the rank photo */
+    height: auto; /* Maintain aspect ratio */
+    margin-left: 10px; /* Add margin for spacing */
+}
+
+.separator {
+    width: 100%;
+    margin-top: 5px; /* Adjust the distance from the name-level section */
+    margin-bottom: 5px; /* Adjust the distance from the game-stats section */
+    border: none;
+    border-top: 4px solid rgb(97, 97, 97); /* Style the line */
+    bottom:110px;
+    position: absolute;
+}
+.separator2 {
+    width: 100%;
+    margin-top: 5px; /* Adjust the distance from the name-level section */
+    margin-bottom: 5px; /* Adjust the distance from the game-stats section */
+    border: none;
+    border-top: 4px solid rgb(97, 97, 97); /* Style the line */
+    bottom:30px;
+    position: absolute;
+}
+.separator3 {
+    width: 100%;
+    margin-top: 5px; /* Adjust the distance from the name-level section */
+    margin-bottom: 5px; /* Adjust the distance from the game-stats section */
+    border: none;
+    border-top: 3px solid #9d825e; /* Style the line */
+    bottom:270px;
+    position: absolute;
+    z-index: 1;
+}
+.separator4{
+    width: 100%;
+    margin-top: 5px; /* Adjust the distance from the name-level section */
+    margin-bottom: 5px; /* Adjust the distance from the game-stats section */
+    border: none;
+    border-top: 8px solid#000000; /* Style the line */
+    bottom:255px;
+    position: absolute;
+}
+.separator5{
+    width: 100%;
+    margin-top: 5px; /* Adjust the distance from the name-level section */
+    margin-bottom: 5px; /* Adjust the distance from the game-stats section */
+    border: none;
+    border-top: 3px solid#9d825e; /* Style the line */
+    bottom:292px;
+    position: absolute;
+}
+
+.game-stats {
+    font-weight: 500;
+    position: absolute;
+    top: 378px; /* Adjust the vertical position */
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.game-stats button {
+    height: 30px;
+    width: auto;
+    background-color: #9d825e;
+    border-radius: 23px;
+    padding: 5px 15px; /* Add padding for better appearance */
+    cursor:auto;
+}
+
+.stat {
+    text-align: left;
+    position: relative;
+    top: 30px;
+    color: rgb(255, 255, 255);
+    cursor: pointer; /* Add cursor pointer for better UX */
+}
+
+#name-level .name img {
+    width: 25px; /* Adjust the width of the rank photo */
+    height: auto; /* Maintain aspect ratio */
+    margin-left: 10px; /* Add margin for spacing */
+    position: absolute;
+    top:120px;
+    left:210px;
+}
+

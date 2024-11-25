@@ -1,0 +1,35 @@
+{% block head %}
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="{{ url_for('static', filename='contactus.css') }}"> 
+{% endblock %}
+    
+{% block body %}
+<div class="content">
+        <img id="logo" src="{{ url_for('static', filename='images/contactus-pic01.jpg') }}">
+        <div class="container">
+            <form id="message" action="/contact_us" method="post">
+                {%if form%}{{ form.csrf_token }}{% endif %}
+                <h1>Contact Us Form</h1>
+                <input type="text" id="firstName" name="firstName" placeholder="First Name" required>
+                <input type="text" id="lastName" name="lastName" placeholder="Last Name" required>
+                <input type="email" id="email" name="email" placeholder="Email" required>
+                <input type="text" id="mobile" name="mobile" placeholder="Mobile" required>
+                <textarea name="message" placeholder="Type Your Message Here..." required></textarea>
+                <input type="submit" value="Send" role="button" id="button">
+            </form>
+        </div>
+        <a class="return" href="{{ url_for('index') }}">
+            <img src="{{ url_for('static', filename='images/return-up-back-svgrepo-com1.svg') }}">
+        </a>
+    </div>
+    <script>
+        function adjustZoom() {
+            document.body.style.transform = `scale(${1 / window.devicePixelRatio})`;
+            document.body.style.transformOrigin = '0 0';
+        }
+
+        window.addEventListener('resize', adjustZoom);
+        adjustZoom();
+    </script>
+    
+{% endblock  %}

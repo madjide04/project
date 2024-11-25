@@ -1,0 +1,149 @@
+body{
+    background: radial-gradient(circle at center, #c5a48d96, transparent 100%) top right;
+    background-color: #000000bd;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    overflow: hidden;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+    text-align: center;
+    margin: 5vh;
+    
+}
+
+#chessboard {
+    width: 320px; /* Set the width of the chessboard */
+    height: 320px; /* Set the height of the chessboard */
+    display: flex;
+    justify-content: center; /* Horizontally center the chessboard */
+    align-items: center; /* Vertically center the chessboard */
+    margin: auto;
+    margin-top: 40px; /* view high unit  */
+    margin-bottom: 0vh; /* view high unit  */
+    flex-wrap: wrap; /* Allow squares to wrap to next line */
+}
+
+.promoter  {
+    width: 160px; /* Set the width of the chessboard */
+    height: 40px; /* Set the height of the chessboard */
+    display: flex;
+    justify-content: center; /* Horizontally center the chessboard */
+    align-items: center; /* Vertically center the chessboard */
+    margin: auto;
+    margin-top: 0vh; /* view high unit  */
+    margin-bottom: 0vh; /* view high unit  */
+    flex-wrap: wrap; /* Allow squares to wrap to next line */
+    position: relative;
+    top: -360px;
+
+    border: 2px solid #f00; /* Red border */
+    box-sizing: border-box;
+}
+.promoter .box {
+    z-index: 9999;
+}
+
+.box {
+    height: 36px;
+    width: 39px;
+    position: relative; /* help set what is viewed first */
+}
+
+.box svg{
+    height: 30px;
+    width: 30px;
+    margin: 5px;
+    position: relative; /* help set what is viewed first */
+    z-index: -9; /* help set what is viewed first */
+}
+
+.square {
+    height: 40px;
+    width: 40px;
+    position: relative; /* help set what is viewed first */
+}
+
+.square svg {
+    height: 30px;
+    width: 30px;
+    margin: 5px;
+    position: relative; /* help set what is viewed first */
+    z-index: -9; /* help set what is viewed first */
+}
+path{
+    position: relative; /* help set what is viewed first */
+    z-index: -10; /* help set what is viewed first */
+}
+
+.piece {
+    position: relative; /* help set what is viewed first */
+    z-index: 999; /* help set what is viewed first */
+}
+
+.boardblack {
+    background-color: #0A1416; /* black square color */
+}
+
+.boardwhite {
+    background-color: #fef6e1; /* white square color */
+}
+
+/* .incheckblack {
+    background-color: rgb(10, 70, 22);
+}
+
+.incheckwhite {
+    background-color: rgb(212, 255, 182); 
+}  */
+
+/* .middleColor {
+    background-color: rgb(111, 163, 102);
+} */
+
+.movedto {
+    background-color: rgb(46, 171, 255);        /* background-color: rgb(146, 255, 68);  */
+}
+
+.movedfrom {
+    background-color: rgb(49, 122, 194);        /* background-color: rgb(111, 163, 102); */
+}
+
+.indicatedblack {
+    background-color: rgb(111, 163, 102);
+}
+
+.indicatedwhite {
+    background-color: rgb(90, 233, 65);
+}
+
+.incheckwhite {
+    background-color: rgb(255, 77, 46);        /* background-color: rgb(146, 255, 68);  */
+}
+
+.incheckblack {
+    background-color: rgb(194, 71, 49);        /* background-color: rgb(111, 163, 102); */
+}
+
+ .blackpiece path {
+    fill: #0A1416; 
+    stroke: #dad3c3 ;
+}
+
+.whitepiece path {
+    fill: #FEF6E1 ; 
+    stroke: #14272b ; 
+} 
+
+.draggable {
+    z-index: 10; /* Ensure draggable elements appear above other elements */
+}
+
+.button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 10vh;
+}

@@ -1,0 +1,98 @@
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='rules.css') }}"> 
+{% endblock %}
+
+{% block body %}
+<nav>
+        <ul>
+            <div id="items">
+
+                <li><a href="{{ url_for('index') }}" id="homeLink" class="nav-link {% if active_page == 'welcome' %}active{% endif %}">Home</a></li>
+                <li><a href="{{ url_for('rules') }}" id="rulesLink" class="nav-link {% if active_page == 'rules' %}active{% endif %}" onclick="selected(this)">Rules</a></li>
+                <div id="right">
+                    <li><a  href="{{ url_for('profile') }}" id="profileLink" class="nav-link {% if active_page == 'profile' %}active{% endif %}">Profile</a></li>
+                    <li><a  href="{{ url_for('index') }}" id="modesLink" class="nav-link {% if active_page == 'modes' %}active{% endif %}" onclick="toggleModes(this)">Play</a></li>
+                </div>
+            </div>
+        </ul>
+    </nav>
+    
+    
+            <div id="page">              
+        <div id="titres">           
+            <div id="firstone"><p><h1>It's never too late to learn how to play chess&mdash;the most popular game in the world! Learning the rules of chess is easy:</h1></p></div>
+        <ol><h2>
+        <li><a href="#set-up-chess-board" title="Set up the Chess Board">Set Up The Chess Board</a></li>
+        <li><a href="#chess-pieces-move" title="Chess Pieces Moves">Learn To Move The Pieces</a></li>
+        <li><a href="#special-rules-chess" title="Special Rules Chess">Discover The Special Rules</a></li>
+       
+        </h2></ol>
+        </div> 
+        <hr />
+                        <p style="text-align: center;">Here's a video of <a href="https://www.youtube.com/@GothamChess" target="_blank" style="color: rgb(223, 158, 85);font-size: 17px;font-weight: bold;">GothamChess</a> explaining all the rules you need to know to start playing chess.</p>
+                        <p><iframe width="960" height="550" class="video-defer video-defer-placeholder" src="//www.youtube.com/embed/OCSbzArwB10" data-src="//www.youtube.com/embed/OCSbzArwB10" allowfullscreen="allowfullscreen"></iframe></p>
+            
+            <h2><strong><a id="set-up-chess-board"></a>Step 1. How To Setup The Chessboard</strong></h2>
+                        <p>At the beginning of the game the chessboard is laid out so that each player has the white (or light) color square in the bottom right-hand side.</p>
+                <div id="imgs"><img src="{{ url_for('static', filename='images/rules-pic02.png') }}" style="display: block; margin-left: auto; margin-right: auto; margin-top: auto; aspect-ratio:403/404" class="imageUploaderImg img-defer img-defer-placeholder" alt="Set up Chess Board" id="img"></div>
+                        <p>The chess pieces are then arranged the same way each time. The second row (or rank) is filled with pawns. The rooks go in the corners, then the knights next to them, followed by the bishops, and finally the queen, who always goes on her own matching color (white queen on white, black queen on black), and the king on the remaining square.</p>
+                        <p><img src="{{ url_for('static', filename='images/rules-pic03.gif') }}" data-src="setupgif.gif" style="display: block; margin-left: auto; margin-right: auto; aspect-ratio:403/404" class="imageUploaderImg img-defer img-defer-placeholder" alt="Chess board" width="403" height="404" /></p>
+                        <p style="text-align: center;"><em>Set up the pieces at the beginning of the game will be really easy.</em></p>
+                        <hr />
+            
+            <h2><strong><a id="chess-pieces-move"></a>Step 2. How The Chess Pieces Move</strong></h2>
+                        <p>Each of the 6 different kinds of pieces moves differently. Pieces cannot move through other pieces (though the knight can jump over other pieces), and can never move onto a square with one of their own pieces. However, they can be moved to take the place of an opponent's piece which is then captured. Pieces are generally moved into positions where they can capture other pieces (by landing on their square and then replacing them), defend their own pieces in case of capture, or control important squares in the game.</p>
+                <h3><strong>How to Move the King in Chess</strong></h3>
+                        <p>The king is the most important piece, but is one of the weakest. The king can only move one square in any direction - up, down, to the sides, and diagonally.</p>
+                        <p>The king may never move himself into check (where he could be captured). When the king is attacked by another piece this is called "check".</p>
+                        <p><img src="{{ url_for('static', filename='images/rules-pic04.jpg') }}"  style="display: block; margin-left: auto; margin-right: auto; aspect-ratio:401/401" class="imageUploaderImg img-defer img-defer-placeholder" alt="King Chess Movement" width="401" height="401" /></p>
+                <h3><strong>How To Move The Queen In Chess</strong></h3>
+                        <p>The queen is the most powerful piece. She can move in any one straight direction - forward, backward, sideways, or diagonally - as far as possible as long as she does not move through any of her own pieces.</p>
+                        <p>And, like with all pieces, if the queen captures an opponent's piece her move is over. Notice how the white queen captures the black queen and then the black king is forced to move.</p>
+                        <p><img src="{{ url_for('static', filename='images/rules-pic05.png') }}" data-src="https://images.chesscomfiles.com/uploads/v1/images_users/tiny_mce/erik/phpgpXYlQ.gif" style="display: block; margin-left: auto; margin-right: auto; aspect-ratio:400/401" class="imageUploaderImg img-defer img-defer-placeholder" alt="Queen Chess Movement" width="400" height="401" /></p>
+                <h3><strong>How To Move The Rook In Chess</strong></h3>
+                        <p>The rook may move as far as it wants, but only forward, backward, and to the sides.</p>
+                        <p>The rooks are particularly powerful pieces when they are protecting each other and working together!</p>
+                        <p><img src="{{ url_for('static', filename='images/rules-pic06.png') }}" data-src="https://images.chesscomfiles.com/uploads/v1/images_users/tiny_mce/erik/phpHlPkaE.gif" style="display: block; margin-left: auto; margin-right: auto; aspect-ratio:398/399" class="imageUploaderImg img-defer img-defer-placeholder" alt="Rook Chess Movement" width="398" height="399" /></p>
+                <h3><strong>How To Move The Bishop In Chess</strong></h3>
+                        <p>The bishop may move as far as it wants, but only diagonally. Each bishop starts on one color (light or dark) and must always stay on that color.</p>
+                        <p>Bishops work well together because they cover up each other's weaknesses.</p>
+                        <p><img src="{{ url_for('static', filename='images/rules-pic07.png') }}" data-src="https://images.chesscomfiles.com/uploads/v1/images_users/tiny_mce/erik/phpOYVVvo.gif" style="display: block; margin-left: auto; margin-right: auto; aspect-ratio:400/400" class="imageUploaderImg img-defer img-defer-placeholder" alt="Bishop Chess Movement" width="400" height="400" /></p>
+                <h3><strong>How To Move The Knight In Chess</strong></h3>
+                        <p>Knights move in a very different way from the other pieces &ndash; going two squares in one direction, and then one more move at a 90-degree angle, just like the shape of an &ldquo;L&rdquo;.</p>
+                        <p>Knights are also the only pieces that can move over other pieces.</p>
+                        <p><img src="{{ url_for('static', filename='images/rules-pic08.png') }}" data-src="https://images.chesscomfiles.com/uploads/v1/images_users/tiny_mce/erik/phpMl2vJy.gif" style="display: block; margin-left: auto; margin-right: auto; aspect-ratio:400/400" class="imageUploaderImg img-defer img-defer-placeholder" alt="Knight Chess Movement" width="400" height="400" /></p>
+                <h3><strong>How To Move The Pawn In Chess</strong></h3>
+                        <p>Pawns are unusual because they move and capture in different ways: they move forward but capture diagonally. Pawns can only move forward one square at a time, except for their very first move where they can move forward two squares.</p>
+                        <p>Pawns can only capture one square diagonally in front of them. They can never move or capture backward. If there is another piece directly in front of a pawn he cannot move past or capture that piece.</p>
+                        <p><img src="{{ url_for('static', filename='images/rules-pic09.png') }}" data-src="https://images.chesscomfiles.com/uploads/v1/images_users/tiny_mce/erik/phpHVosJK.gif" style="display: block; margin-left: auto; margin-right: auto; aspect-ratio:401/401" class="imageUploaderImg img-defer img-defer-placeholder" alt="Pawn chess movement" width="401" height="401" /></p>
+                        <hr />
+            
+            
+            <h2><strong><a id="special-rules-chess"></a>Step 3. Discover The Special Rules Of Chess</strong></h2>
+                        <p>There are a few special rules in chess that may not seem logical at first. They were created to make the game more fun and interesting.</p>
+                <h3><strong>How To Promote A Pawn In Chess</strong></h3>
+                        <p>Pawns have another special ability and that is that if a pawn reaches the other side of the board it can become any other chess piece (called <a href="https://www.chess.com/article/view/do-you-know-how-to-promote-a-pawn" target="_blank" title="Pawn Promotion Chess" style="color: rgb(223, 158, 85);">promotion</a>) excluding a king (or pawn, for that matter).</p>
+                        <p>A pawn may be promoted to a knight, bishop, rook, or queen. A common misconception is that pawns may only be exchanged for a piece that has been captured. That is NOT true. A pawn is usually promoted to a queen. Only pawns may be promoted.</p>
+                        <p><img src="{{ url_for('static', filename='images/rules-pic10.gif') }}" data-src="https://images.chesscomfiles.com/uploads/v1/images_users/tiny_mce/erik/php2sp106.gif" style="display: block; margin-left: auto; margin-right: auto; aspect-ratio:401/401" class="imageUploaderImg img-defer img-defer-placeholder" alt="How to promote a pawn in chess" width="401" height="401" /></p>
+                <h3><strong>How To Do "En Passant" In Chess</strong></h3>
+                        <p>The last rule about pawns is called &ldquo;<a href="https://www.chess.com/article/view/how-to-capture-en-passant" target="_blank" title="En Passant Chess Capture" style="color: rgb(223, 158, 85);">en passant</a>,&rdquo; which is French for &ldquo;in passing&rdquo;.&nbsp;If a pawn moves out two squares on its first move, and by doing so lands to the side of an opponent's pawn (effectively jumping past the other pawn's ability to capture it), that other pawn has the option of capturing the first pawn as it passes by.</p>
+                        <p>This special move must be done immediately after the first pawn has moved past, otherwise the option to capture it is no longer available. Click through the example below to better understand this odd, but important rule.</p>
+                        <p><img src="{{ url_for('static', filename='images/rules-pic11.gif') }}" data-src="https://images.chesscomfiles.com/uploads/v1/images_users/tiny_mce/erik/phpPbxgAU.gif" style="display: block; margin-left: auto; margin-right: auto; aspect-ratio:401/401" class="imageUploaderImg img-defer img-defer-placeholder" alt="en passant" width="401" height="401" /></p>
+                <h3><strong>How To Castle In Chess</strong></h3>
+                        <p>One other special chess rule is called Castling. This move allows you to do two important things all in one move: get your king to safety (hopefully), and get your rook out of the corner and into the game. On a player's turn he may move his king two squares over to one side and then move the rook from that side's corner to right next to the king on the opposite side. (See the example below.) However, in order to castle, the following conditions must be met:</p>
+                        <ul style="color:rgb(255, 173, 119);">
+                        <li>it must be that king's very first move</li>
+                        <li>it must be that rook's very first move</li>
+                        <li>there cannot be any pieces between the king and rook to move</li>
+                        <li>the king may not be in check or pass through check</li>
+                        </ul>
+                        <p>Notice that when you castle one direction the king is closer to the side of the board. That is called castling "<strong>kingside</strong>". Castling to the other side, through where the queen sat, is called castling "<strong>queenside</strong>". Regardless of which side, the king always moves only two squares when castling.</p>
+                        <p><img src="{{ url_for('static', filename='images/rules-pic12.jpeg') }}" data-src="https://images.chesscomfiles.com/uploads/v1/images_users/tiny_mce/erik/php1yeIwJ.gif" style="display: block; margin-left: auto; margin-right: auto; aspect-ratio:399/399" class="imageUploaderImg img-defer img-defer-placeholder" alt="How to castle in chess" width="399" height="399" /></p>
+                        <hr />
+        
+            
+            
+
+                    <script src="{{ url_for('static', filename='rules.js') }}"></script>
+                    {% endblock %}

@@ -1,0 +1,143 @@
+{% extends 'base.html' %}
+
+{% block head%}
+<link rel="stylesheet" href="{{ url_for('static', filename='gameboard.css') }}">
+{% endblock %}
+
+{% block body%}
+<!-- here i cite the variables 
+opponent room color
+-->
+
+<div class="body">
+    <div class="board">
+        
+        <div class="box1">
+        <ul id="letters1">
+            <li>A</li>
+            <li>B</li>
+            <li>C</li>
+            <li>D</li>
+            <li>E</li>
+            <li>F</li>
+            <li>G</li>
+            <li>H</li>
+        </ul>
+        <ul class="numbers">
+            <li class="numbers1">
+                <ul id="numbers1">
+                    <li>8</li>
+                    <li>7</li>
+                    <li>6</li>
+                    <li>5</li>
+                    <li>4</li>
+                    <li>3</li>
+                    <li>2</li>
+                    <li>1</li>
+                </ul>
+            </li>
+            <li class="numbers2">
+                <ul id="numbers2">
+                    <li>8</li>
+                    <li>7</li>
+                    <li>6</li>
+                    <li>5</li>
+                    <li>4</li>
+                    <li>3</li>
+                    <li>2</li>
+                    <li>1</li>
+                </ul>
+            </li>
+        </ul>
+        
+       
+        
+        <ul id="letters2">
+            <li>A</li>
+            <li>B</li>
+            <li>C</li>
+            <li>D</li>
+            <li>E</li>
+            <li>F</li>
+            <li>G</li>
+            <li>H</li>
+        </ul>
+        
+        <div class="box2">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+    
+    <div id="chessboard" hardness="{{hardness}}" opponent="{{opponent}}" room="{{room}}" color="{{color}}" namer = "{{name}}"> </div>
+    <div class="takenleft"></div>
+    <div class="takenright"></div>
+    <style>
+        .takenright::before {
+            content: var(--label-content);
+            /* content: "{{ name if color == 'w' else 'guest' }}";  Jinja syntax for conditional content */ 
+            position: absolute;
+            top: -20px; /* Adjust position to appear above the div */
+            left: 50%; /* Center the label horizontally */
+            transform: translateX(-50%);
+            color: white; /* Text color */
+            font-weight: bold; /* Make the text bold */
+        }
+        .takenleft::before {
+            content: var(--label-content);
+            /* content: "{{ name if color == 'b' else 'guest' }}";  Jinja syntax for conditional content */ 
+            position: absolute;
+            top: -20px; /* Adjust position to appear above the div */
+            left: 50%; /* Center the label horizontally */
+            transform: translateX(-50%);
+            color: black; /* Text color */
+            font-weight: bold; /* Make the text bold */
+        }
+    </style>
+<!-- <div class="player">It is <span id="player"></span>'s turn, go!</div>  -->
+<div class="box5">
+    <div class="game-code">game code :</div>
+    <div id="display-info"><p >{{ room }} {{ color }}</p></div>
+</div>
+<!-- not set yet  -->
+<!-- make a submit button that redirects to game page  -->
+<div class="button">
+    <form action="/">
+        <img src="{{ url_for('static', filename='images/login-icon.svg') }}">
+        <input class="button1" type="submit" value="quit game ">
+    </form>
+    </div>  
+</div>
+</div>
+
+<div class="gameover" style="display:none;">
+    <img class="over" src="{{ url_for('static', filename='images/lili.png') }}">
+    <h1 class="game">GAME OVER</h1>
+    <div id="winner"> THE WINNER IS : <span class="winner"></span></div>
+    <button class="replay">
+        <img src="{{ url_for('static', filename='images/replay-icon.svg') }}"> 
+        <a onclick="resetgame()" style="cursor: pointer;">Replay</a>
+    </button>
+    <button class="quit">
+        <img src="{{ url_for('static', filename='images/logout-icon.svg') }}">
+        <a href="{{ url_for('index') }}">Quit</a>
+    </button>
+</div>
+
+
+
+<!-- <div id="gameover"></div> -->
+
+<!-- import js file at the end to avoid errors -->
+<script type="text/javascript" src="{{ url_for('static', filename='chessboard-1.0.0.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='chess.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='pieces.js') }}"></script> 
+<script type="text/javascript" src="{{ url_for('static', filename='app03.js') }}"></script>
+
+
+{% endblock %}

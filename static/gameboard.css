@@ -1,0 +1,381 @@
+body{
+    background: radial-gradient(circle at center, #c5a48d96, transparent 100%) top right;
+    background-color: #000000bd;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    overflow: hidden;
+    font-family: 'Times New Roman', Times, serif;
+}
+*{
+  margin: 0;
+  border: 0;
+  box-sizing: border-box;
+}
+#chessboard {
+    width: 500px; /* Set the width of the chessboard */
+    height: 500px; /* Set the height of the chessboard */
+    display: flex;
+
+    position: absolute;
+     top:8px ;
+     left: 400px;
+    flex-wrap: wrap;
+    border-radius: 30px;
+    
+}
+
+.promoter  {
+    width: 254px; /* Set the width of the chessboard */
+    height: 80px; /* Set the height of the chessboard */
+    display: flex;
+    justify-content: center; /* Horizontally center the chessboard */
+    align-items: center; /* Vertically center the chessboard */
+    margin: auto;
+    margin-top: 0vh; /* view high unit  */
+    margin-bottom: 0vh; /* view high unit  */
+    flex-wrap: wrap; /* Allow squares to wrap to next line */
+    position: relative;
+    top: -360px;
+    border: 2px solid ;
+    border-image: linear-gradient(to right, #D9B78A, #965C34) 1 round; /* Gradient border color */
+    border-image-slice: 1;
+    /* Red border */
+    box-sizing: border-box;
+    z-index: 10000;
+}
+
+.box {
+    
+    height: 76px;
+    width: 62.5px;
+    position: relative;
+    
+}
+.box .piece{
+    z-index: 9999;
+}
+
+.box svg{
+    height: 56px;
+    width: 42.5px;
+    margin: 10px;
+    position: relative; /* help set what is viewed first */
+    z-index: -8; /* help set what is viewed first */
+}
+
+.square {
+    height: 62.5px;
+    width: 62.5px;
+    position: relative; /* help set what is viewed first */
+}
+
+.square svg {
+    
+    height: 42.5px;
+    width: 42.5px;
+    margin: 10px;
+    position: relative; /* help set what is viewed first */
+    z-index: -9; /* help set what is viewed first */
+}
+/*.body{
+    background-image: linear-gradient(to right,#aa9d92c2 ,#ada59d33);
+    height: 700px;
+    width: 1500px;
+    margin-top: -370px;
+}*/
+.board {
+    position: absolute;
+    top: 15px;
+    left: 13px;
+    
+}
+.box1 {
+    background : rgba(0, 0, 0, 0.466) ;
+    border: 1px solid ;
+    border-image: linear-gradient(to right, #D9B78A, #965C34) 1 round; /* Gradient border color */
+    border-image-slice: 1;
+   
+    height: 560px;
+    width: 560px;
+    position: absolute;
+    top: 15px;
+    left: 370px;
+   
+}
+ul {
+    list-style: none;
+}
+ul#letters1,
+ul#letters2 {
+    display: flex;
+    justify-content: space-between;
+}
+
+ul#letters1 li,
+ul#letters2 li {
+    list-style: none;
+}
+#letters1 {
+    margin-right: 45px;
+    margin-left: 5px;
+    margin-top: 6px;
+    color: white;
+}
+#letters2 {
+    margin-right: 45px;
+    margin-left: 5px;
+    margin-top: -8px;
+    color: white;
+}
+.numbers{
+    display: flex;
+    justify-content: space-between;
+}
+#numbers1 , #numbers2 {
+    display: flexbox;
+    justify-content: space-between;
+}
+#numbers1 li, #numbers2 li {
+    margin: 42px;
+    color: white;
+}
+#numbers1 {
+    margin-left: -110px;
+}
+#numbers2{
+    margin-right: -28px;
+}
+.button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 10vh;
+    position: absolute;
+    top: -10px;
+}
+.player {
+    width: 170px;
+    height: 40px;
+    background-color: rgba(255, 255, 255, 0.493);
+    border-radius: 20px;
+    color: white;
+    position: absolute;
+    top:10px;
+    left: 550px;
+    padding: 10px;
+    font-size: 15px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-align: center;
+}
+.gameover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(3, 3, 3, 0.76);
+    background-image: radial-gradient(circle at center, rgba(197, 164, 141, 0.59), transparent 50%);
+    backdrop-filter: blur(10px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.gameover img.over {
+    height: 600px;
+    position: absolute;
+    top: -200px;
+    margin-top: -100px;
+    margin-bottom: 20px;
+}
+
+#winner {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 20px;
+    color: white;
+    margin-top: 120px;
+}
+
+.winner {
+    position: absolute;
+}
+
+.game {
+    position: absolute;
+    top: 220px;
+    font-size: 80px;
+    color: #FAF6DC;
+    text-shadow: 0 0 20px rgba(250, 172, 120, 0.5), 0 0 30px rgba(243, 205, 180, 0.5), 0 0 40px rgba(238, 196, 168, 0.5);
+    font-family: 'Times New Roman', Times, serif;
+    letter-spacing: 2px;
+}
+
+.quit a {
+    text-decoration: none;
+    cursor: pointer;
+    color: white;
+    padding-left: 20px;
+    font-size: 20px;
+    text-align: center;
+}
+
+.quit img {
+    position: absolute;
+    top: 10px;
+    left: 27px;
+}
+
+.gameover button {
+    height: 50px;
+    width: 160px;
+}
+
+.replay {
+    border: 2px solid;
+    background-color: black;
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(217, 183, 138, 0.5);
+    border-image: linear-gradient(to right, #D9B78A, #965C34) 1 round;
+    border-image-slice: 1;
+    padding: 10px 20px;
+    position: absolute;
+    top: 430px;
+}
+
+.quit {
+    border: 2px solid;
+    background-color: black;
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(217, 183, 138, 0.5);
+    border-image: linear-gradient(to right, #D9B78A, #965C34) 1 round;
+    border-image-slice: 1;
+    padding: 10px 20px;
+    position: absolute;
+    top: 500px;
+}
+
+.gameover button img {
+    width: 30px;
+    height: 30px;
+}
+
+.replay img {
+    position: absolute;
+    top: 8px;
+    left: 25px;
+    z-index: 9999;
+}
+
+.replay a {
+    cursor: pointer !important;
+    text-decoration: none;
+    color: white;
+    padding-left: 30px;
+    font-size: 18px;
+    text-align: center;
+}
+
+.button1 {
+width: 160px;
+border: 1.5px solid ;
+background-color: rgba(0, 0, 0, 0.555);
+color: #fff;
+text-shadow: 2px 2px 4px rgba(217, 183, 138, 0.5);
+border-image: linear-gradient(to right, #D9B78A, #965C34) 1 round; /* Gradient border color */
+border-image-slice: 1; /* Ensure full border coverage */
+padding: 10px 20px;
+font-family: 'Times New Roman', Times, serif;
+font-size: 16px;
+margin: 0px;
+cursor: pointer;
+}
+.button img {
+    position: absolute;
+    top: 21px;
+    left: 10px;
+}
+.takenright {
+    width: 250px; /* Set container width */
+    height: 280px;
+    position: absolute;
+    left: 50px;
+    top: 160px;
+    display: flex; /* Use flexbox for layout */
+    flex-wrap: wrap; /* Allow items to wrap to next line */
+    background-color: rgba(255, 255, 255, 0.103);
+    border: 1px solid white;
+    border-radius: 30px;
+}
+
+.takenright svg {
+    width: 40px !important; /* Set item width */
+    height: 40px !important; /* Set item height */
+    margin: 5px !important; /* Add margin between items for spacing */
+    aspect-ratio: 1 / 1 !important;; /* Add margin between items for spacing */
+}
+
+.takenleft {
+    width: 250px; /* Set container width */
+    height: 280px;
+    position: absolute;
+    left: 1000px;
+    top: 160px;
+    display: flex; /* Use flexbox for layout */
+    flex-wrap: wrap; /* Allow items to wrap to next line */
+    background-color: rgba(255, 255, 255, 0.103);
+    border: 1px solid white;
+    border-radius: 30px;
+}
+
+.takenleft svg {
+    width: 40px !important; /* Set item width */
+    height: 40px !important; /* Set item height */
+    margin: 5px !important; /* Add margin between items for spacing */
+    aspect-ratio: 1 / 1 !important; /* Add margin between items for spacing */
+}
+.box5 {
+    border: 1.5px solid ;
+    background-image: linear-gradient(to top, #00000049, #0000008a);
+    color: #fff;
+     text-shadow: 2px 2px 4px rgba(217, 183, 138, 0.5);
+    border-image: linear-gradient(to right, #D9B78A, #965C34) 1 round; /* Gradient border color */
+    border-image-slice: 1;
+    position: absolute;
+    top: 15px;
+    left: 930.2px;
+    height: 60px;
+    width: 160px;
+    z-index: 999;
+}
+#display-info {
+    height: 30px;
+    width: 160px;
+    
+   
+}
+.game-code {
+    height: 26px;
+    width: 158px;
+    
+    margin-bottom: -31px;
+    padding-left: 10px;
+    padding-top: 5px;
+}
+#display-info p {
+    text-align: center;
+    padding-top: 5px;
+    text-shadow: 0 0 5px rgba(192, 192, 192, 0.5);
+    animation: glow-animation 2s ease-in-out infinite alternate; 
+    
+}
+@keyframes glow-animation {
+    from {
+        text-shadow: 0 0 5px rgba(192, 192, 192, 0.616);
+    }
+    to {
+        text-shadow: 0 0 10px rgba(192, 192, 192, 0.658), 0 0 10px rgba(224, 222, 222, 0.767), 0 0 10px rgba(241, 241, 241, 0.575);
+    }
+}

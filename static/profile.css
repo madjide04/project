@@ -1,0 +1,420 @@
+
+body, html {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index:-3;
+    background: radial-gradient(circle at center, #c5a48d96, transparent 100%) ;
+    background-color: #000000;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    overflow: hidden;
+    font-family: 'Times New Roman', Times, serif;
+    zoom: 1;
+}
+
+nav {
+    background-color: rgba(0, 0, 0, 0);
+    width: 100%; 
+    height: 150px;
+    position:absolute ;
+    top: 0 ;
+    padding-top: 0px;
+    z-index: 999;
+
+}
+ul{
+    display: flex; 
+    justify-content: space-between; 
+    list-style: none;
+    margin-left: 8vh;
+}
+#items{
+    display: flex;
+    justify-content: space-around;
+    margin-top: 25px;
+    margin-right: 100px;
+}
+#items li {
+    margin-right: 100px;
+    margin-top: 20px;
+}
+#items li #ho {
+    letter-spacing: 3px;
+    text-transform: uppercase;
+   font-size: 15px;
+   color: aliceblue;
+   outline: none;
+   margin-left: 40px;
+   
+    
+}
+
+#items li #ho:hover {
+    animation: animate 1s both linear;
+}
+
+@keyframes animate {
+    0% {
+        color: #c0c0c0;
+        text-shadow: none;
+    }
+    100% {
+        color: #fff;
+        text-shadow: 
+            -2px 0 10px #ffffffcb,
+            -4px 0 20px #ffffffcb,
+            -6px 0 40px #ffffffcb,
+            -8px 0 80px #ffffffcb,
+            -10px 0 160px #ffffffcb; /* Adjust the horizontal offset */
+    }
+}
+a{
+    text-decoration: none;
+    cursor: pointer;
+}
+#right {
+    display: flex;
+    margin-left: 450px;
+}
+
+.card {
+    width: 500px; 
+    height: 500px; 
+    border-radius: 40px;
+    background-color:#9a9695e5; 
+    background: radial-gradient( circle at center top , #EDECE8 , transparent 60%);
+    text-align: center; /* center the text inside if exists */    
+    line-height: 100px; /* Adjust the line height to vertically center text */
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    position: relative;
+    top:40px;
+    z-index: -2;
+    
+}
+
+.card #circle { /* circle li fih la photo */
+    border-radius: 100px;
+    position: absolute;
+    width: 180px; /* Adjust as needed */
+    height: 180px; /* Adjust as needed */
+    border-radius: 70%; /* Makes the div circular */
+    position: absolute;
+    top: 90px;
+    border: #000000 solid 7px;
+    z-index: 2;
+}
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 50% 75%;
+    }
+    100% {
+        background-position: 75% 100%;
+    }
+}
+
+#square {
+    width: 500px; /* Adjust the width of the square */
+    height: 305px; /* Adjust the height of the square */
+    background: linear-gradient(to bottom, rgb(97, 97, 97),#1f1f1fde);position: absolute;
+    top:195px;
+    z-index: -1;
+    border-radius: 0 0 30px 30px;
+    animation:gradientAnimation 4s  infinite;
+    box-shadow: 2px 2px 4px black;
+}
+
+
+#upper-photo {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top:-260px;
+    z-index: inherit;
+}
+
+
+#circle {
+    background-color: white;
+}
+
+
+.card #circle::before {
+    width: 175px;
+    left: -160px; /* Adjust distance from the circle */
+}
+
+.card #circle::after {
+    width: 175px;
+    right: -160px; /* Adjust distance from the circle */
+}
+
+.card #circle img { /* hadi la photo */
+    z-index: 1;
+    width: 100%; /* Ensure the image fills the circle */
+    height: 100%; /* Ensure the image fills the circle */
+    object-fit: cover; /* Cover the entire area of the circle */
+    border-radius: 50%;
+} 
+
+.card #name-level {
+    font-size: larger;
+    font-weight: 800;
+    position: absolute;
+    margin-top: 18px;
+    margin-left: 25px;
+    left: 20px;
+    display: flex;
+    justify-content: space-between;
+    top: 239px;
+    width: 80%;
+}
+
+.profile-info, .level-info {
+    text-align: left;
+    color: rgb(255, 254, 254);
+}
+
+.level-info  span{
+    margin-right: 10px;
+}
+
+.profile-info span{
+    margin-right: 10px;
+}
+
+.game-stats {
+    font-weight: 500;
+    position: absolute;
+    top: 330px; /* Adjust the vertical position */
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    
+}
+
+.game-stats button{
+    height: 0px;
+    background-color: #8a5430;
+    border-radius: 23px;
+}
+
+.stat{
+    font-size: 13px;
+    text-align: left;
+    position: relative;
+    top: 80px;
+    color: rgb(97, 97, 97);
+    cursor: pointer; /* Add cursor pointer for better UX */
+}
+
+#name-level .profile-info img {
+    margin: -10px;
+    width: 35px; 
+    height: 35px;
+    margin-left: 10px; /* Add margin for spacing */
+}
+
+#name-level .name img {
+    width: 20px; /* Adjust the width of the flag image */
+    height: auto; /* Maintain aspect ratio */
+    margin-right: 5px;
+}
+
+.card #name-level {
+    font-size: larger;
+    font-weight: 800;
+    position: absolute;
+    top: 210px; /* Adjust the vertical position */
+    left: 20px;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.profile-info {
+    width: 90px;
+    height: 40px;
+}
+
+#name-level .name{
+    margin-top: 37px;
+}
+
+
+
+
+.profile-info .level-info img {
+    width: 20px; /* Adjust the width of the rank photo */
+    height: auto; /* Maintain aspect ratio */
+    margin-left: 10px; /* Add margin for spacing */
+}
+
+
+.separator3 {
+    width: 100%;
+    height: 15px;
+    border: none;
+    background:linear-gradient(to bottom, #D9B78A, #965C34);
+    
+    bottom:290px;
+    position: absolute;
+    z-index: 1;
+}
+.separator4{
+    width: 100%;
+    height: 1.5px;
+    background-color: #ffffff;
+    bottom:280px;
+    position: absolute;
+    z-index: -2;
+}
+.separator5{
+    width: 100%;
+    height: 1.5px;
+    background-color: #ffffff;
+    bottom:265px;
+    position: absolute;
+    z-index: -2;
+}
+
+.game-stats {
+    font-weight: 500;
+    position: absolute;
+    top: 378px; /* Adjust the vertical position */
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.game-stats button {
+    height: 35px;
+    width: 150px;
+    background-image: linear-gradient(to bottom, #D9B78A, #965C34);
+    border-color: 2px #000000bd;
+    border-radius: 23px;
+    padding: 5px 15px; /* Add padding for better appearance */
+    cursor:auto;
+}
+
+.stat {
+    text-align: left;
+    position: relative;
+    top: 30px;
+    color: rgb(255, 255, 255);
+    cursor: pointer; /* Add cursor pointer for better UX */
+}
+
+#name-level .name img {
+    width: 25px; /* Adjust the width of the rank photo */
+    height: auto; /* Maintain aspect ratio */
+    margin-left: 10px; /* Add margin for spacing */
+    position: absolute;
+    top:120px;
+    left:210px;
+}
+.pions1 , .pions2{
+    width:75px;
+    position: absolute;
+    top: 377px;
+    left: 50px;
+}
+.pions2 {
+    left: 380px;
+}
+.second-box {
+    height: 300px;
+    width: 520px;
+    background-color: #191718;
+    margin-top: 200px;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+    z-index: -5;
+    box-shadow: 2px 2px 4px black;
+}
+.separator {
+    height: 1.5px;
+    width: 300px;
+    background-color: rgba(255, 255, 255, 0.808);
+    position: absolute;
+    top: 360px;
+    left: 100px;
+}
+.whitepion {
+    position: absolute;
+    top: 285px;
+    width: 80px;
+    left: 210px;
+}
+.username {
+    position: absolute;
+    top: 20px;
+    left: -10px;
+    color: #f3e0c6;
+    text-shadow: 2px 2px 7px #d6ad78;
+    font-size: 13px;
+    
+}
+.unknown {
+    position: absolute;
+    top: 20px;
+    left: 80px;
+    color: #fff;
+    font-size: 13px;
+}
+.unknown2 {
+    position: absolute;
+    top: -10px;
+    left: 20px;
+    color: #fff;
+    font-size: 13px;
+}
+.id {
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    color: #f3e0c6;
+    text-shadow: 2px 2px 7px #d6ad78;
+    font-size: 13px;
+    
+}
+.cc {
+    height: 20px;
+    width: 100px;
+    margin-top: -40px;
+    margin-left: -10px;
+    text-align: center;
+}
+
+.line1 {
+    color: #d6ad78;
+    position: absolute;
+    top: -30px;
+    left: -10px;
+}
+.line2 {
+    color: #965C34;
+    position: absolute;
+    left: -26px;
+    top: -15px;
+}
+.level {
+    position: absolute;
+    top: 20px;
+    left: 0px;
+    color: #f3e0c6;
+    text-shadow: 2px 2px 7px #d6ad78;
+}
+
+.level-info{
+    position: absolute;
+    top: 15px;
+    left: 330px;
+}

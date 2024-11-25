@@ -1,0 +1,50 @@
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='profile02.css') }}"> 
+{% endblock %}
+    
+{% block body %}
+<!-- here i talk about the variables 
+avatar_path id level username gamesplayed gameswon gameslost
+-->
+<body id="background">
+    <div class="card"> <!-- the main card -->
+        <div id="upper-photo"><img src="{{ url_for('static', filename='images/photoup.jpg') }}" alt="Upper Photo"></div>
+        <div id="circle">
+            {% if avatar_path %}
+            <!-- Display the avatar image using the provided path -->
+            <img src="{{ url_for('static', filename=avatar_path) }}" alt="Avatar" width="100" height="100">
+            {% else %}
+            <!-- Display a default avatar image if no path is provided -->
+            <img src="{{ url_for('static', filename='avatars/avatar0.jpg') }}" alt="Default Avatar" width="100" height="100">
+            {% endif %}
+        </div>
+        <hr class="separator3"> <!-- hado tlata lines deco flogo lfo9-->
+        <hr class="separator4">
+        <hr class="separator5">
+        <div id="name-level">
+            <div class="profile-info">
+                <span class="ID">ID: #{% if id %}{{ id }}{% else %}Unknown{% endif %}</span> <!-- ID in the first line -->
+                <span class="level-info">
+                    <span>LEVEL</span>
+                    <span>{{ level if level else 'Unknown' }}</span>
+                    <img src="{{ url_for('static', filename='images/rank.png') }}" alt="Rank Photo">
+                </span>
+            </div>
+            <div class="name">
+                <img src="{{ url_for('static', filename='images/flag.svg') }}" alt="Country Flag">
+                <span>USERNAME :</span> <!-- Name in the second line -->
+                <span>{{ username if username else 'Unknown' }}</span>
+            </div>
+        </div>
+        <hr class="separator"> <!-- hada bin profile w stats-->
+        <hr class="separator2"> <!-- hada bin stats w bottom-->
+        <div class="game-stats">
+            <button class="stat" id="game-played">GAME PLAYED: {{ gamesplayed if gamesplayed else 0 }}</button> <!-- Show actual value -->
+            <button class="stat" id="game-wins">GAME WINS: {{ gameswon if gameswon else 0 }}</button> <!-- Show actual value -->
+            <button class="stat" id="game-loss">GAME LOSS: {{ gameslost if gameslost else 0 }}</button> <!-- Show actual value -->
+        </div>
+        <div id="square">
+        </div>
+    </div>
+</body>
+{% endblock %}

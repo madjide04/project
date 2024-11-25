@@ -1,0 +1,16 @@
+{% block head%}
+<link rel="stylesheet" href="{{ url_for('static', filename='board.css') }}"> 
+{% endblock %}
+
+{% block body%}
+<div class="title">
+    <h1> HOW YOU WANT TO PLAY</h1>
+</div>
+<form action="/game" method="post">
+    <button id="button1"><a href="{{ url_for('board') }}">Against ai</a></button> 
+</form>
+<button id="button2" ><a href="" >Against a friend</a></button>
+<img id="logo" src="{{ url_for('static', filename='chess.jpg ') }}">
+<a class="return" href="{{ url_for('welcome') }}"><img src="{{ url_for('static', filename='return-up-back-svgrepo-com1.svg') }}"></a>
+</div>
+{% endblock %}

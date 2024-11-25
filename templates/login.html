@@ -1,0 +1,124 @@
+
+
+
+{% block head%}
+<link rel="stylesheet" href="{{ url_for('static', filename='login.css') }}"> 
+{% endblock %}
+
+{% block body%}
+    
+<a class="return" href="{{ url_for('index') }}"><img src="{{ url_for('static', filename='images/return-back.svg') }}"></a>      
+<div class="button-box">
+    <div id="btn"></div>
+    <button type="button" class="toggle-btn" onclick="login()">Log In</button>
+    <button type="button" class="toggle-btn" onclick="register()">Register</button>
+</div>
+        <div class="infodiv">
+            
+           
+            <div class="social-icons">
+                <a><svg fill="url(#gradient1)" width="800px" height="800px" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" class="icon">
+                    <defs>
+                        <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" style="stop-color:#D9B78A" />
+                            <stop offset="100%" style="stop-color:#965C34" />
+                        </linearGradient>
+                    </defs>
+                    <path d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm167 633.6C638.4 735 583 757 516.9 757c-95.7 0-178.5-54.9-218.8-134.9C281.5 589 272 551.6 272 512s9.5-77 26.1-110.1c40.3-80.1 123.1-135 218.8-135 66 0 121.4 24.3 163.9 63.8L610.6 401c-25.4-24.3-57.7-36.6-93.6-36.6-63.8 0-117.8 43.1-137.1 101-4.9 14.7-7.7 30.4-7.7 46.6s2.8 31.9 7.7 46.6c19.3 57.9 73.3 101 137 101 33 0 61-8.7 82.9-23.4 26-17.4 43.2-43.3 48.9-74H516.9v-94.8h230.7c2.9 16.1 4.4 32.8 4.4 50.1 0 74.7-26.7 137.4-73 180.1z"/>
+                </svg></a>
+                
+                <a><svg fill="url(#gradient2)" width="800px" height="800px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="gradient2" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" style="stop-color:#D9B78A" />
+                            <stop offset="100%" style="stop-color:#965C34" />
+                        </linearGradient>
+                    </defs>
+                    <path d="M12 2.03998C6.5 2.03998 2 6.52998 2 12.06C2 17.06 5.66 21.21 10.44 21.96V14.96H7.9V12.06H10.44V9.84998C10.44 7.33998 11.93 5.95998 14.22 5.95998C15.31 5.95998 16.45 6.14998 16.45 6.14998V8.61998H15.19C13.95 8.61998 13.56 9.38998 13.56 10.18V12.06H16.34L15.89 14.96H13.56V21.96C15.9164 21.5878 18.0622 20.3855 19.6099 18.57C21.1576 16.7546 22.0054 14.4456 22 12.06C22 6.52998 17.5 2.03998 12 2.03998Z"/>
+                </svg></a>
+            
+                <a><svg fill="url(#gradient3)" width="800px" height="800px" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" class="icon">
+                    <defs>
+                        <linearGradient id="gradient3" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" style="stop-color:#D9B78A" />
+                            <stop offset="100%" style="stop-color:#965C34" />
+                        </linearGradient>
+                    </defs>
+                    <path d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm215.3 337.7c.3 4.7.3 9.6.3 14.4 0 146.8-111.8 315.9-316.1 315.9-63 0-121.4-18.3-170.6-49.8 9 1 17.6 1.4 26.8 1.4 52 0 99.8-17.6 137.9-47.4-48.8-1-89.8-33-103.8-77 17.1 2.5 32 2.5 50.1-2a111 111 0 0 1-88.9-109v-1.4c14.7 8.3 32 13.4 50.1 14.1a111.13 111.13 0 0 1-49.5-92.4c0-20.7 5.4-39.6 15.1-56a315.28 315.28 0 0 0 229 116.1C492 353.1 548.4 292 616.2 292c32 0 60.8 13.4 81.1 35 25.1-4.7 49.1-14.1 70.5-26.7-8.3 25.7-25.7 47.4-48.8 61.1 22.4-2.4 44-8.6 64-17.3-15.1 22.2-34 41.9-55.7 57.6z"/>
+                </svg></a>
+            </div>
+            
+            
+            <form id="login" class="input-group" action="" method="POST">
+                {%if form%}{{ form.csrf_token }}{% endif %}
+                <input type="text" id="username" name="username" class="input-field" placeholder="User Id" required>
+                {% for error in form.username.errors %}
+                <span style="color: red;">{{ error }}</span>
+                {% endfor %}
+                <input type="password" id="password" name="password" class="input-field" placeholder="Enter Password" required>
+                {% for error in form.password.errors %}
+                <span style="color: red;">{{ error }}</span>
+                {% endfor %}  
+                <div >
+                <input type="checkbox" class="check-box" ><span>Remember me</span>
+                <button type="submit" class="submit-btn">Log In</button></div>
+            </form>
+            <div class="or">____________________ OR ____________________</div>
+            <form id="register" class="input-group" action="/registrate" method="POST">
+                {%if form%}{{ form.csrf_token }}{% endif %}
+                <input type="text" id="username" name="username" class="input-field" placeholder="User Id" required>
+                {% for error in form.username.errors %}
+                <span style="color: red;">{{ error }}</span>
+                {% endfor %}
+                <input type="email" id="email" name="email" class="input-field" placeholder="Email" required>
+                {%if form.email %}
+                {% for error in form.email.errors %}
+                <span style="color: red; margin-bottom: 10px;">{{ error }}</span>
+                {% endfor %}
+                {% endif %}
+                <input type="password" id="password" name="password" class="input-field" placeholder="Enter Password" required>
+                {% for error in form.password.errors %}
+                <span style="color: red;">{{ error }}</span>
+                {% endfor %}
+                <div>
+                <input type="checkbox" name="check" class="check-box" ><span>I agree to the terms & conditions</span>
+                <button type="submit" class="submit-btn">Register</button></div>
+            </form>
+            <div class="or">____________________ OR ____________________</div>
+            
+            
+        </div>
+        <a class="return" href="{{ url_for('index') }}"><img src="{{ url_for('static', filename='images/return-up-back-svgrepo-com1.svg') }}"></a>
+    <script>
+        var x = document.getElementById("login");
+        var y = document.getElementById("register");
+        var z = document.getElementById("btn");
+        function register(){
+            x.style.left="-370px";
+            y.style.left="-13px";
+            z.style.left="110px";
+        }
+        function login(){
+            x.style.left="-10px";
+            y.style.left="450px";
+            z.style.left="0";
+        }
+    </script>
+    {% if register %}
+    <script>
+        register();
+    </script>
+    {% endif %}
+    <script>
+        function adjustZoom() {
+            document.body.style.zoom = `${1 / window.devicePixelRatio}`;
+        }
+        
+        // Adjust the zoom level when the window is resized
+        window.addEventListener('resize', adjustZoom);
+        
+        // Initial call to set the zoom level
+        adjustZoom();
+        </script>
+        
+{% endblock %}

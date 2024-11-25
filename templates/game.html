@@ -1,0 +1,126 @@
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='game.css') }}"> 
+<style>
+    /* Style for the color spinner */
+    .color-spinner {
+        width: 100px;
+        height: 30px;
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+
+<div class="transparent"></div>
+<div class="title">
+    <h1> HOW YOU WANT TO PLAY</h1>
+</div>
+<img id="logo" src="{{ url_for('static', filename='images/chess.jpg ') }}">
+<button id="button1" onclick="toggleAI()"><a href="#" >Against a bot</a></button>
+<button id="button2" onclick="togglefriend()" ><a href="#" >Against a friend</a></button>
+
+
+<div class="friend">
+    <div id="boxfriend" style="display: none;">
+        <h1 class="title1">AGAINST A FRIEND</h1>
+        <p id="chose">Choose your color</p>
+        <button onclick="selectedColor('w'); selected3()" id="whitef">White</button>
+        <button onclick="selectedColor('b') ; selected4()" id="blackf">Black</button>
+
+        <form action="/game_player" method="post" id="create-room-form">
+            <input type="hidden" name="action" value="create">
+            <input type="hidden" name="color" id="selected-color" value="w">
+            <input type="submit" class="play1" id="create" value="Create Room">
+        </form>
+
+        <p class="or">____________________ OR ____________________</p>
+
+        {% if error_message %}
+        <p class="error-message" id="error-message">{{ error_message }}</p>
+    {% endif %}
+
+        <form action="/game_player" method="post" id="join-room-form">
+            <input type="hidden" name="action" value="join">
+            <input type="text" name="room-code" class="input-field" id="code" placeholder="Enter room code" required>
+            <input type="submit" class="play1" id="join" value="Join Room">
+        </form>
+    </div>
+</div>
+<div class="transparent" style="display: none;"></div>
+
+
+
+<div class="ai" >
+    
+    <div id="boxai" style="display: none;" >
+        <h1 class="title1"> AGAINST A BOT</h1>
+        <p id="chose"> chose your color </p>
+        <button onclick="selected1()" id="white">white</button>
+        <button onclick="selected2()" id="black">black</button>
+        {% set bot_keys = bots.keys() | list %}
+        <form action="/game_bot" method="post" id="subForm">
+            <input type="submit" class="play1" value="Play">
+            <input type="hidden" id="name" name="name" value="{{ bot_keys[0] }}">
+            <input type="hidden" id="hardness" name="hardness" value="1">
+            <input type="hidden" id="color" name="color" value="w">
+        </form>
+        <div id="number-container" hardness={{hardness}} >
+            <button id="decrease-btn">-</button>
+            <span id="number-display">1</span>
+            <button id="increase-btn">+</button>
+          </div>
+       <div class="bot">
+        <p id="p1">bot type</p>
+        <p id="p2">hardness level  </p>
+       </div>
+       <div class="selection-container">
+        <button id="select-btn">Select Bot</button>
+        <ul id="bot-list">
+        {% for bot_name, bot_value in bots.items() %}
+            <li id="{{ bot_name }}" hardness="{{ bot_value }}">{{ bot_name }}</li>
+        {% endfor %}
+        </ul>
+    </div>
+    
+    
+    </div>
+</div>
+<a class="return" href="{{ url_for('index') }}"><img src="{{ url_for('static', filename='images/return-up-back-svgrepo-com1.svg') }}"></a>
+<script src="{{ url_for('static', filename='game.js') }}"></script>
+<script>
+   
+    // Show the friend div if there is an error message
+    window.onload = function() {
+        var errorMessage = "{{ error_message }}";
+        if (errorMessage) {
+            document.getElementById('boxfriend').style.display = 'block';
+            document.getElementById('error-message').style.display = 'block';
+            document.querySelector('.transparent').style.display = 'block';
+        }
+    };
+    document.addEventListener('DOMContentLoaded', function() {
+            var transparentDiv = document.querySelector(".transparent");
+            transparentDiv.addEventListener('click', function() {
+                // Hide the friend div and remove 'clicked' class from button2
+                var boxfriend = document.getElementById("boxfriend");
+                var button2 = document.getElementById("button2");
+                if (boxfriend) {
+                    boxfriend.style.display = "none";
+                    if (button2) button2.classList.remove("clicked");
+                }
+
+                // Hide the AI div and remove 'clicked' class from button1
+                var boxai = document.getElementById("boxai");
+                var button1 = document.getElementById("button1");
+                if (boxai) {
+                    boxai.style.display = "none";
+                    if (button1) button1.classList.remove("clicked");
+                }
+
+                // Hide the transparent div
+                transparentDiv.style.display = "none";
+            });
+        });
+
+</script>
+{% endblock %}
